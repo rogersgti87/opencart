@@ -9,8 +9,10 @@ image/data/
 image/cache/
 system/cache/
 system/logs/
-
 system/storage/
+
+storage/cache/*
+storage/logs/*
 
 # vQmod log files
 vqmod/logs/*

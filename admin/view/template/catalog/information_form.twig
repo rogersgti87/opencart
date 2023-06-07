@@ -205,4 +205,17 @@
   <script type="text/javascript"><!--
 $('#language a:first').tab('show');
 //--></script></div>
+
+<script type="text/javascript"><!--
+  {% for language in languages %}
+  $('input[name="information_description[{{ language.language_id }}][title]').stringToSlug({
+    setEvents: 'keyup keydown blur',
+    getPut: 'input[name="information_seo_url[0][{{ language.language_id }}]"]',
+    space: '-',
+    replace: '/\s?\([^\)]*\)/gi',
+    AND: 'e'
+  });
+  {% endfor %}
+//--></script>
+
 {{ footer }} 

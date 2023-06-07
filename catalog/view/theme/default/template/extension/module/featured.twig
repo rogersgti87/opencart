@@ -21,7 +21,7 @@
         {% if product.price %}
         <p class="price">
           {% if not product.special %}
-          {{ product.price }}
+          {{ product.price }}          
           {% else %}
           <span class="price-new">{{ product.special }}</span> <span class="price-old">{{ product.price }}</span>
           {% endif %}
@@ -29,6 +29,7 @@
           <span class="price-tax">{{ text_tax }} {{ product.tax }}</span>
           {% endif %}
         </p>
+        {{ product.parcelamento }}
         {% endif %}
       </div>
       <div class="button-group">

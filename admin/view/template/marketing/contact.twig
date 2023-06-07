@@ -19,67 +19,81 @@
         <h3 class="panel-title"><i class="fa fa-envelope"></i> {{ heading_title }}</h3>
       </div>
       <div class="panel-body">
-        <form class="form-horizontal">         
-
-		  <div class="form-group required">
-            <label class="col-sm-2 control-label" for="input-campaign-name">Nome da Campanha</label>
+        <form class="form-horizontal">
+          <div class="form-group">
+            <label class="col-sm-2 control-label" for="input-store">{{ entry_store }}</label>
             <div class="col-sm-10">
-              <input type="text" name="campaign_name" value="" placeholder="Nome da Campanha" id="input-campaign-name" class="form-control" />
+              <select name="store_id" id="input-store" class="form-control">
+                <option value="0">{{ text_default }}</option>               
+                {% for store in stores %}
+                <option value="{{ store.store_id }}">{{ store.name }}</option>
+                {% endfor %}
+              </select>
             </div>
           </div>
-
-		  <div class="form-group required">
-            <label class="col-sm-2 control-label" for="input-subject">{{ entry_subject }}</label>
+          <div class="form-group">
+            <label class="col-sm-2 control-label" for="input-to">{{ entry_to }}</label>
             <div class="col-sm-10">
-              <input type="text" name="subject" value="" placeholder="{{ entry_subject }}" id="input-subject" class="form-control" />
+              <select name="to" id="input-to" class="form-control">
+                <option value="newsletter">{{ text_newsletter }}</option>
+                <option value="customer_all">{{ text_customer_all }}</option>
+                <option value="customer_group">{{ text_customer_group }}</option>
+                <option value="customer">{{ text_customer }}</option>
+                <option value="affiliate_all">{{ text_affiliate_all }}</option>
+                <option value="affiliate">{{ text_affiliate }}</option>
+                <option value="product">{{ text_product }}</option>
+              </select>
             </div>
           </div>
-
-		  <div class="form-group required">
-            <label class="col-sm-2 control-label" for="input-campaign-name">Data de envio</label>
+          <div class="form-group to" id="to-customer-group">
+            <label class="col-sm-2 control-label" for="input-customer-group">{{ entry_customer_group }}</label>
             <div class="col-sm-10">
-              <input type="text" name="campaign_date" value="" placeholder="Data de envio" id="input-campaign-date" class="form-control" />
+              <select name="customer_group_id" id="input-customer-group" class="form-control">
+                {% for customer_group in customer_groups %}
+                <option value="{{ customer_group.customer_group_id }}">{{ customer_group.name }}</option>
+                {% endfor %}
+              </select>
             </div>
           </div>
-
-		  {% if books %}
-		  <div class="form-group">
-			<label class="col-sm-2 control-label" for="input-books-default">Selecione a Lista</label>
-			  <div class="col-sm-10">
-				<select name="module_sendpulse_book_default" id="input-book-default" class="form-control">
-				  <option value="">{{ text_select }}</option>
-		  			{% for book in books %}
-				  		<option value="{{ book.id }}" {% if book.id == module_sendpulse_book_default %} selected {% endif %}>{{ book.name }}</option>
-				  	{% endfor %}
-				</select>
-			  </div>
-		  </div>
-		{% endif %}
-
-
-		  <div class="form-group to" id="to-product">
+          <div class="form-group to" id="to-customer">
+            <label class="col-sm-2 control-label" for="input-customer"><span data-toggle="tooltip" title="{{ help_customer }}">{{ entry_customer }}</span></label>
+            <div class="col-sm-10">
+              <input type="text" name="customers" value="" placeholder="{{ entry_customer }}" id="input-customer" class="form-control" />
+              <div class="well well-sm" style="height: 150px; overflow: auto;"></div>
+            </div>
+          </div>
+          <div class="form-group to" id="to-affiliate">
+            <label class="col-sm-2 control-label" for="input-affiliate"><span data-toggle="tooltip" title="{{ help_affiliate }}">{{ entry_affiliate }}</span></label>
+            <div class="col-sm-10">
+              <input type="text" name="affiliates" value="" placeholder="{{ entry_affiliate }}" id="input-affiliate" class="form-control" />
+              <div class="well well-sm" style="height: 150px; overflow: auto;"></div>
+            </div>
+          </div>
+          <div class="form-group to" id="to-product">
             <label class="col-sm-2 control-label" for="input-product"><span data-toggle="tooltip" title="{{ help_product }}">{{ entry_product }}</span></label>
             <div class="col-sm-10">
               <input type="text" name="products" value="" placeholder="{{ entry_product }}" id="input-product" class="form-control" />
               <div class="well well-sm" style="height: 150px; overflow: auto;"></div>
             </div>
           </div>
-         
-
-		  
-
-          
-          
-        
-
-
+          <div class="form-group required">
+            <label class="col-sm-2 control-label" for="input-subject">{{ entry_subject }}</label>
+            <div class="col-sm-10">
+              <input type="text" name="subject" value="" placeholder="{{ entry_subject }}" id="input-subject" class="form-control" />
+            </div>
+          </div>
+          <div class="form-group required">
+            <label class="col-sm-2 control-label" for="input-message">{{ entry_message }}</label>
+            <div class="col-sm-10">
+              <textarea name="message" placeholder="{{ entry_message }}" id="input-message" data-toggle="summernote" data-lang="{{ summernote }}" class="form-control"></textarea>
+            </div>
+          </div>
         </form>
       </div>
     </div>
   </div>
   <link href="view/javascript/codemirror/lib/codemirror.css" rel="stylesheet" />
   <link href="view/javascript/codemirror/theme/monokai.css" rel="stylesheet" />
-  <link href="view/javascript/jquery/jsdatetimepicker/jquery.datetimepicker.min.css" rel="stylesheet" />
   <script type="text/javascript" src="view/javascript/codemirror/lib/codemirror.js"></script> 
   <script type="text/javascript" src="view/javascript/codemirror/lib/xml.js"></script> 
   <script type="text/javascript" src="view/javascript/codemirror/lib/formatting.js"></script> 
@@ -87,8 +101,6 @@
   <link href="view/javascript/summernote/summernote.min.css" rel="stylesheet" />
   <script type="text/javascript" src="view/javascript/summernote/summernote-image-attributes.js"></script> 
   <script type="text/javascript" src="view/javascript/summernote/opencart.js"></script> 
-  <script type="text/javascript" src="view/javascript/jquery/jsdatetimepicker/jquery.datetimepicker.full.min.js"></script> 
-  
   <script type="text/javascript"><!--
 $('select[name=\'to\']').on('change', function() {
 	$('.to').hide();
@@ -99,68 +111,69 @@ $('select[name=\'to\']').on('change', function() {
 $('select[name=\'to\']').trigger('change');
 //--></script> 
   <script type="text/javascript"><!--
+// Customers
+$('input[name=\'customers\']').autocomplete({
+	'source': function(request, response) {
+		$.ajax({
+			url: 'index.php?route=customer/customer/autocomplete&user_token={{ user_token }}&filter_name=' +  encodeURIComponent(request),
+			dataType: 'json',
+			success: function(json) {
+				response($.map(json, function(item) {
+					return {
+						label: item['name'],
+						value: item['customer_id']
+					}
+				}));
+			},
+			error: function(xhr, ajaxOptions, thrownError) {
+				alert(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+			}
+		});
+	},
+	'select': function(item) {
+		$('input[name=\'customers\']').val('');
 
-	$(function () {		
+		$('#customer' + item['value']).remove();
 
-		$.datetimepicker.setLocale('pt-BR');
-		var startDate = moment(Date()).format('DD/MM/YYYY');	
-		var startTime = moment(Date()).add(30, 'minutes').format('HH:mm');	
-		$('#input-campaign-date').datetimepicker({
-			format:'d/m/Y H:i',  			
-			//closeOnDateSelect: true,
-			step: 30,
-			onSelectDate:function(ct,$i){				
-				var currentDateTime = new Date();
-				if(currentDateTime.getDate() == moment(ct).format('DD') && currentDateTime.getHours() >= 23 && currentDateTime.getMinutes() <= 59){
-					this.setOptions({
-					  //allowTimes:['05:00']						
-					  minTime:'23:30',
-					  //maxTime:'23:00',
-					  step: 30,
-				  });								
-				}else{
-					this.setOptions({
-						//allowTimes:['05:00']						
-						minTime:startTime,
-						step: 30,
-					});
-				}
-			  },
-			  onShow:function(ct,$i){				
-				var currentDateTime = new Date();
-				if(currentDateTime.getDate() == moment(ct).format('DD') && currentDateTime.getHours() >= 23 && currentDateTime.getMinutes() <= 59){
-					this.setOptions({
-					  //allowTimes:['05:00']						
-					  minTime:'23:30',
-					  //maxTime:'23:00',
-					  step: 30,
-				  });								
-				}else{
-					this.setOptions({
-						//allowTimes:['05:00']						
-						minTime:startTime,
-						step: 30,
-					});
-				}
-			  },
-			defaultDate: startDate,
-			defaultTime: startTime,
-			
-			//minDate:'21/08/2022',
-			//onChangeDateTime:logic,
-			//onShow:logic		
-			//format:"DD/MM/YYYY HH:mm:ss",
-			//language: 'pt-br',
-			//minuteStepping: 5						
-		    //minDate: "21/08/2022 23:00:00",		
-			//maxDate: "21/08/2023 23:00:00",		
-			//defaultDate: defDate.toString("DD/MM/YYY hh:mm:ss")
-			//minDate: moment().add(4, 'hours'),
-		});				
-	});
+		$('#input-customer').parent().find('.well').append('<div id="customer' + item['value'] + '"><i class="fa fa-minus-circle"></i> ' + item['label'] + '<input type="hidden" name="customer[]" value="' + item['value'] + '" /></div>');
+	}
+});
 
-	
-	 
+$('#input-customer').parent().find('.well').delegate('.fa-minus-circle', 'click', function() {
+	$(this).parent().remove();
+});
+
+// Affiliates
+$('input[name=\'affiliates\']').autocomplete({
+	'source': function(request, response) {
+		$.ajax({
+			url: 'index.php?route=customer/customer/autocomplete&user_token={{ user_token }}&filter_name=' +  encodeURIComponent(request) + '&filter_affiliate=1',
+			dataType: 'json',
+			success: function(json) {
+				response($.map(json, function(item) {
+					return {
+						label: item['name'],
+						value: item['customer_id']
+					}
+				}));
+			},
+			error: function(xhr, ajaxOptions, thrownError) {
+				alert(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+			}
+		});
+	},
+	'select': function(item) {
+		$('input[name=\'affiliates\']').val('');
+
+		$('#affiliate' + item['value']).remove();
+
+		$('#input-affiliate').parent().find('.well').append('<div id="affiliate' + item['value'] + '"><i class="fa fa-minus-circle"></i> ' + item['label'] + '<input type="hidden" name="affiliate[]" value="' + item['value'] + '" /></div>');
+	}
+});
+
+$('#input-affiliate').parent().find('.well').delegate('.fa-minus-circle', 'click', function() {
+	$(this).parent().remove();
+});
 
 // Products
 $('input[name=\'products\']').autocomplete({
@@ -201,7 +214,7 @@ function send(url) {
 		data: $('#content select, #content input, #content textarea'),
 		dataType: 'json',
 		beforeSend: function() {
-			//$('#button-send').button('loading');
+			$('#button-send').button('loading');
 		},
 		success: function(json) {
 			$('.alert-dismissible, .text-danger').remove();

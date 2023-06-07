@@ -31,6 +31,27 @@
 {% for script in scripts %}
 <script type="text/javascript" src="{{ script }}"></script>
 {% endfor %}
+<script type="text/javascript" src="view/javascript/stringToSlug/jquery.stringToSlug.min.js"></script>
+<script type="text/javascript" src="view/javascript/stringToSlug/speakingurl.js"></script>
+
+<script type="text/javascript">
+  $(document).ready(function(){
+    $('input[id^="input-name"]').on('keypress blur', function() {	
+      $('input[id^="input-name"]').each(function(){
+        language_id = $(this).attr('name').replace(/[^0-9]+/g, '');
+        tags        = "";
+        $($('input[id="input-name'+language_id+'"]').val().split(' ')).each(function(){
+          if(this.length >= "3"){
+            tags += this+', ';
+          }
+        });
+        $('#input-tag'+language_id).val(tags.substring(0,(tags.length - 2)));
+      });
+    });
+    $('input[id^="input-name"]').trigger('keypress');
+  });
+  </script>
+
 </head>
 <body>
 <div id="container">

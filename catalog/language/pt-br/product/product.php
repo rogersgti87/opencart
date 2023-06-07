@@ -1,5 +1,9 @@
 <?php
 // Text
+$_['text_title1']              = 'Simular Frete';
+$_['text_title']               = 'Taxas de Envio';
+$_['entry_zone']               = 'Estado';
+$_['entry_country']            = 'Pais';
 $_['text_search']              = 'Pesquisar';
 $_['text_brand']               = 'Marca';
 $_['text_manufacturer']        = 'Marca:';

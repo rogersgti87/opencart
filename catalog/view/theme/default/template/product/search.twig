@@ -122,6 +122,7 @@
                 <p class="price">
                   {% if  not product.special %}
                   {{ product.price }}
+                  {{ product.parcelamento }}
                   {% else %}
                   <span class="price-new">{{ product.special }}</span> <span class="price-old">{{ product.price }}</span>
                   {% endif %}

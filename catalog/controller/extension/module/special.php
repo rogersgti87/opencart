@@ -52,7 +52,13 @@ class ControllerExtensionModuleSpecial extends Controller {
 					$rating = false;
 				}
 
+				if ((float) $result['special']) {
+					$parcelamento = $this->model_catalog_product->getParcelamento($result['special'], $result['tax_class_id']);
+				} else {
+					$parcelamento = $this->model_catalog_product->getParcelamento($result['price'], $result['tax_class_id']);
+				}
 				$data['products'][] = array(
+					'parcelamento' => $parcelamento,
 					'product_id'  => $result['product_id'],
 					'thumb'       => $image,
 					'name'        => $result['name'],

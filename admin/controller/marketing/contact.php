@@ -4,19 +4,6 @@ class ControllerMarketingContact extends Controller {
 
 	public function index() {
 		$this->load->language('marketing/contact');
-		
-		$this->load->model('setting/setting');
-		$this->load->model('extension/module/sendpulse');	
-		
-		$id = $this->config->get('module_sendpulse_id');
-		$secret = $this->config->get('module_sendpulse_secret');
-	
-		if($id != '' && $secret != '') {
-			$data['books'] = $this->model_extension_module_sendpulse->getBooks($id, $secret);
-			if(!$data['books']) $this->error['warning'] = $this->language->get('error_connect');
-		}
-		else $data['books'] = false;		
-
 
 		$this->document->setTitle($this->language->get('heading_title'));
 
@@ -54,92 +41,204 @@ class ControllerMarketingContact extends Controller {
 	public function send() {
 		$this->load->language('marketing/contact');
 
-		$this->load->model('setting/setting');
-
-		$this->load->model('extension/module/sendpulse');
-
-		$id = $this->config->get('module_sendpulse_id');
-		$secret = $this->config->get('module_sendpulse_secret');
-		$sender_default = $this->config->get('module_sendpulse_sender_default');
-		$sender_default = explode(',',$sender_default);
-		$sender_name    = $sender_default[0];
-		$sender_email   = $sender_default[1];
-
 		$json = array();
 
 		if ($this->request->server['REQUEST_METHOD'] == 'POST') {
 			if (!$this->user->hasPermission('modify', 'marketing/contact')) {
 				$json['error']['warning'] = $this->language->get('error_permission');
-			}			
+			}
 
-			$query  = $this->db->query("SELECT pd.name,p.price,p.image, su.keyword FROM " . DB_PREFIX . "product p			 
-			INNER JOIN " . DB_PREFIX . "product_description pd
-			ON p.product_id = pd.product_id
-			LEFT JOIN " . DB_PREFIX . "seo_url su
-			ON REPLACE(su.query,'product_id=','') = p.product_id
-			 WHERE p.product_id IN(".implode(',',$this->request->post['product']).")");
-        	$result = $query->rows;
-			
-
-			$body = '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-			<html xmlns="http://www.w3.org/1999/xhtml">
-			 <head>
-			  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-			  <title>Demystifying Email Design</title>
-			  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-			</head><body>';
-
-			$body .= '<table border="1" cellpadding="0" cellspacing="0" width="600">';			
-		foreach($result as $r){		
-						
-			$body .=	'<tr>																			
-							<td>
-							<img src="'.HTTP_CATALOG.'image/'.$r['image'].'" alt="" width="200" height="200" style="display: block;" />
-							</td>
-						</tr>
-						<tr>
-							<td style="padding: 25px 0 0 0;">
-							<h1><a href="'.HTTP_CATALOG.$r['keyword'].'">'.$r['name'].'</a></h1>
-							</td>
-						</tr>
-						<tr>
-							<td style="padding: 25px 0 0 0;">
-							R$'.number_format($r['price'],2,'.',',').'
-							</td>
-						</tr>';																								
-		}
-			$body .=    '</table>';
-
-			$body .= '</body></html>';			
-
-
-			$newDate = DateTime::createFromFormat('d/m/Y H:i:s', $this->request->post['campaign_date'])->modify('+4 hours')->format('Y-m-d H:i:s');
-
-			$data = array(
-				'sender_name'  => $sender_name,
-				'sender_email' => $sender_email,
-				'subject'      => $this->request->post['subject'],				
-				'body'         => base64_encode( $body ),
-				'list_id'      => $this->request->post['module_sendpulse_book_default'],				
-				'name'         => $this->request->post['campaign_name'],
-				'attachments'  => '',
-				'send_date'    => '2022-08-21 20:00:00',
-				//'type'		   => 'draft'				
-			);			
-
-		$json['createCampaign'] =	$this->model_extension_module_sendpulse->createCampaign($id,$secret,$data);
-
-		
-
-			/* if (!$this->request->post['subject']) {
+			if (!$this->request->post['subject']) {
 				$json['error']['subject'] = $this->language->get('error_subject');
-			} */
+			}
 
-			/* if($id != '' && $secret != '' && isset($this->request->post['book'])) {
-				$json = $this->model_extension_module_sendpulse->export($id, $secret, $this->request->post['book']);
-			} */
+			if (!$this->request->post['message']) {
+				$json['error']['message'] = $this->language->get('error_message');
+			}
 
-			
+			if (!$json) {
+				$this->load->model('setting/store');
+				$this->load->model('setting/setting');
+				$this->load->model('customer/customer');
+				$this->load->model('sale/order');
+
+				$store_info = $this->model_setting_store->getStore($this->request->post['store_id']);
+
+				if ($store_info) {
+					$store_name = $store_info['name'];
+				} else {
+					$store_name = $this->config->get('config_name');
+				}
+
+				$setting = $this->model_setting_setting->getSetting('config', $this->request->post['store_id']);
+
+				$store_email = isset($setting['config_email']) ? $setting['config_email'] : $this->config->get('config_email');
+
+				if (isset($this->request->get['page'])) {
+					$page = (int)$this->request->get['page'];
+				} else {
+					$page = 1;
+				}
+
+				$email_total = 0;
+
+				$emails = array();
+
+				switch ($this->request->post['to']) {
+					case 'newsletter':
+						$customer_data = array(
+							'filter_newsletter' => 1,
+							'start'             => ($page - 1) * 10,
+							'limit'             => 10
+						);
+
+						$email_total = $this->model_customer_customer->getTotalCustomers($customer_data);
+
+						$results = $this->model_customer_customer->getCustomers($customer_data);
+
+						foreach ($results as $result) {
+							$emails[] = $result['email'];
+						}
+						break;
+					case 'customer_all':
+						$customer_data = array(
+							'start' => ($page - 1) * 10,
+							'limit' => 10
+						);
+
+						$email_total = $this->model_customer_customer->getTotalCustomers($customer_data);
+
+						$results = $this->model_customer_customer->getCustomers($customer_data);
+
+						foreach ($results as $result) {
+							$emails[] = $result['email'];
+						}
+						break;
+					case 'customer_group':
+						$customer_data = array(
+							'filter_customer_group_id' => $this->request->post['customer_group_id'],
+							'start'                    => ($page - 1) * 10,
+							'limit'                    => 10
+						);
+
+						$email_total = $this->model_customer_customer->getTotalCustomers($customer_data);
+
+						$results = $this->model_customer_customer->getCustomers($customer_data);
+
+						foreach ($results as $result) {
+							$emails[$result['customer_id']] = $result['email'];
+						}
+						break;
+					case 'customer':
+						if (!empty($this->request->post['customer'])) {
+							$customers = array_slice($this->request->post['customer'], ($page - 1) * 10, 10);
+
+							foreach ($customers as $customer_id) {
+								$customer_info = $this->model_customer_customer->getCustomer($customer_id);
+
+								if ($customer_info) {
+									$emails[] = $customer_info['email'];
+								}
+							}
+
+							$email_total = count($emails);
+						}
+						break;
+					case 'affiliate_all':
+						$affiliate_data = array(
+							'filter_affiliate' => 1,
+							'start'            => ($page - 1) * 10,
+							'limit'            => 10
+						);
+
+						$email_total = $this->model_customer_customer->getTotalCustomers($affiliate_data);
+
+						$results = $this->model_customer_customer->getCustomers($affiliate_data);
+
+						foreach ($results as $result) {
+							$emails[] = $result['email'];
+						}
+						break;
+					case 'affiliate':
+						if (!empty($this->request->post['affiliate'])) {
+							$affiliates = array_slice($this->request->post['affiliate'], ($page - 1) * 10, 10);
+
+							foreach ($affiliates as $affiliate_id) {
+								$affiliate_info = $this->model_customer_customer->getCustomer($affiliate_id);
+
+								if ($affiliate_info) {
+									$emails[] = $affiliate_info['email'];
+								}
+							}
+
+							$email_total = count($this->request->post['affiliate']);
+						}
+						break;
+					case 'product':
+						if (isset($this->request->post['product'])) {
+							$email_total = $this->model_sale_order->getTotalEmailsByProductsOrdered($this->request->post['product']);
+
+							$results = $this->model_sale_order->getEmailsByProductsOrdered($this->request->post['product'], ($page - 1) * 10, 10);
+
+							foreach ($results as $result) {
+								$emails[] = $result['email'];
+							}
+						}
+						break;
+				}
+
+				if ($emails) {
+					$json['success'] = $this->language->get('text_success');
+
+					$start = ($page - 1) * 10;
+					$end = $start + 10;
+
+					if($page == 1 && $email_total < 10) {
+						$json['success'] = sprintf($this->language->get('text_sent'), $email_total, $email_total);
+					} else if($page == 1 && $email_total > 10) {
+						$json['success'] = sprintf($this->language->get('text_sent'), 10, $email_total);
+					} else if($page > 1 && $email_total < ($page * 10)) {
+						$json['success'] = sprintf($this->language->get('text_sent'), $email_total, $email_total);
+					} else {
+						$json['success'] = sprintf($this->language->get('text_sent'), ($start * $page), $email_total);
+					}
+
+					if ($end < $email_total) {
+						$json['next'] = str_replace('&amp;', '&', $this->url->link('marketing/contact/send', 'user_token=' . $this->session->data['user_token'] . '&page=' . ($page + 1), true));
+					} else {
+						$json['next'] = '';
+					}
+
+					$message  = '<html dir="ltr" lang="' . $this->language->get('code') . '">' . "\n";
+					$message .= '  <head>' . "\n";
+					$message .= '    <title>' . $this->request->post['subject'] . '</title>' . "\n";
+					$message .= '    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">' . "\n";
+					$message .= '  </head>' . "\n";
+					$message .= '  <body>' . html_entity_decode($this->request->post['message'], ENT_QUOTES, 'UTF-8') . '</body>' . "\n";
+					$message .= '</html>' . "\n";
+
+					foreach ($emails as $email) {
+						if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
+							$mail = new Mail($this->config->get('config_mail_engine'));
+							$mail->parameter = $this->config->get('config_mail_parameter');
+							$mail->smtp_hostname = $this->config->get('config_mail_smtp_hostname');
+							$mail->smtp_username = $this->config->get('config_mail_smtp_username');
+							$mail->smtp_password = html_entity_decode($this->config->get('config_mail_smtp_password'), ENT_QUOTES, 'UTF-8');
+							$mail->smtp_port = $this->config->get('config_mail_smtp_port');
+							$mail->smtp_timeout = $this->config->get('config_mail_smtp_timeout');
+
+							$mail->setTo($email);
+							$mail->setFrom($store_email);
+							$mail->setSender(html_entity_decode($store_name, ENT_QUOTES, 'UTF-8'));
+							$mail->setSubject(html_entity_decode($this->request->post['subject'], ENT_QUOTES, 'UTF-8'));
+							$mail->setHtml($message);
+							$mail->send();
+						}
+					}
+				} else {
+					$json['error']['email'] = $this->language->get('error_email');
+				}
+			}
 		}
 
 		$this->response->addHeader('Content-Type: application/json');

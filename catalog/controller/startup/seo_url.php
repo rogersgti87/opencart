@@ -1,5 +1,49 @@
 <?php
 class ControllerStartupSeoUrl extends Controller {
+
+	private $new_urls = array(
+		'common/home' => '',
+		'account/account' => 'conta/minha-conta',
+		'account/wishlist' => 'conta/lista-desejos',
+		'account/register' => 'conta/cadastro',
+		'account/login' => 'conta/acessar',
+		'account/forgotten' => 'conta/solicitar-senha',
+		'account/edit' => 'conta/informacoes',
+		'account/password' => 'conta/modificar-senha',
+		'account/address' => 'conta/enderecos',
+		'account/address/edit' => 'conta/enderecos/editar',
+		'account/address/delete' => 'conta/enderecos/excluir',
+		'account/address/add' => 'conta/enderecos/cadastro',
+		'account/reward' => 'conta/pontos',
+		'account/logout' => 'conta/sair',
+		'account/order' => 'conta/historico',
+		'account/order/info' => 'conta/historico/informacoes',
+		'account/order/reorder' => 'conta/historico/refazer',
+		'account/newsletter' => 'conta/informativo',
+		'account/download' => 'conta/downloads',
+		'account/transaction' => 'conta/transacoes',
+		'account/recurring' => 'conta/assinaturas',
+		'account/return' => 'conta/devolucoes',
+		'account/return/add' => 'conta/devolucoes/cadastro',
+		'account/return/success' => 'conta/devolucoes/confirmacao',
+		'account/voucher' => 'conta/vale-presentes/comprar',
+		'account/voucher/success' => 'conta/vale-presentes/confirmacao',
+		'account/tracking' => 'conta/afiliados/gerador-links',
+		'account/affiliate/edit' => 'conta/afiliados/editar',
+		'affiliate/register' => 'afiliados/cadastro',
+		'affiliate/login' => 'afiliados/acessar',
+		'checkout/cart' => 'carrinho',
+		'checkout/checkout' => 'carrinho/finalizar',
+		'checkout/success' => 'carrinho/finalizar/confirmacao',
+		'information/contact' => 'contato',
+		'information/contact/success' => 'contato/enviado',
+		'information/sitemap' => 'mapa-site',
+		'product/special' => 'promocoes',
+		'product/manufacturer' => 'marcas',
+		'product/compare' => 'comparar-produtos',
+		'product/search' => 'busca'
+	);
+
 	public function index() {
 		// Add rewrite to url class
 		if ($this->config->get('config_seo_url')) {
@@ -45,7 +89,12 @@ class ControllerStartupSeoUrl extends Controller {
 						$this->request->get['route'] = $query->row['query'];
 					}
 				} else {
-					$this->request->get['route'] = 'error/not_found';
+					if (in_array($this->request->get['_route_'], $this->new_urls)) {
+						$this->request->get['route'] = array_search($this->request->get['_route_'], $this->new_urls);
+					} else {
+						
+						$this->request->get['route'] = 'error/not_found';
+					}
 
 					break;
 				}
@@ -100,6 +149,12 @@ class ControllerStartupSeoUrl extends Controller {
 					}
 
 					unset($data[$key]);
+        } else {
+            $this->new_urls = array_flip($this->new_urls);
+            if (in_array($data['route'], $this->new_urls)) {
+                $url = '/' . array_search($data['route'], $this->new_urls);
+            }
+            $this->new_urls = array_flip($this->new_urls);
 				}
 			}
 		}

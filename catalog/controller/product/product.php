@@ -175,6 +175,14 @@ class ControllerProductProduct extends Controller {
 		}
 
 		if ($product_info) {
+			$data['parcelamento_js'] = $this->url->link('extension/module/parcelamento/js', 'product_id=' . (int)$this->request->get['product_id'], true);
+
+			if ((float) $product_info['special']) {
+				$data['parcelamento'] = $this->model_catalog_product->getParcelamento($product_info['special'], $product_info['tax_class_id'], true);
+			} else {
+				$data['parcelamento'] = $this->model_catalog_product->getParcelamento($product_info['price'], $product_info['tax_class_id'], true);
+			}
+
 			$url = '';
 
 			if (isset($this->request->get['path'])) {
@@ -249,6 +257,58 @@ class ControllerProductProduct extends Controller {
 			$this->load->model('catalog/review');
 
 			$data['tab_review'] = sprintf($this->language->get('tab_review'), $product_info['reviews']);
+
+			$this->load->language('checkout/checkout');
+
+			$data['text_address_existing'] = $this->language->get('text_address_existing');
+			$data['text_address_new'] = $this->language->get('text_address_new');
+			$data['text_select'] = $this->language->get('text_select');
+			$data['entry_zone'] = $this->language->get('entry_zone');
+			$data['entry_country'] = $this->language->get('entry_country');
+			$data['text_none'] = $this->language->get('text_none');
+			$data['text_title'] = $this->language->get('text_title');
+			$data['text_title1'] = $this->language->get('text_title1');
+			$data['text_loading'] = $this->language->get('text_loading');
+			$data['text_shipping_method'] = $this->language->get('text_shipping_method');
+	 		$data['entry_postcode'] = $this->language->get('entry_postcode');
+			$data['button_shipping'] = $this->language->get('button_shipping');
+			$data['button_cancel'] = $this->language->get('button_cancel');
+
+
+			$this->load->model('account/address');
+
+			$data['addresses'] = $this->model_account_address->getAddresses();
+
+			if (isset($this->session->data['shipping_address']['postcode'])) {
+				$data['postcode'] = $this->session->data['shipping_address']['postcode'];
+			} else {
+				$data['postcode'] = '';
+			}
+			
+			if (isset($this->session->data['shipping_address']['country_id'])) {
+				$data['country_id'] = $this->session->data['shipping_address']['country_id'];
+			} else {
+				$data['country_id'] = $this->config->get('config_country_id');
+			}
+
+			if (isset($this->session->data['shipping_address']['zone_id'])) {
+				$data['zone_id'] = $this->session->data['shipping_address']['zone_id'];
+			} else {
+				$data['zone_id'] = '';
+			}
+			
+			$this->load->model('setting/setting');
+			$data['freteproduto'] = $this->model_setting_setting->getSetting('freteproduto', $store_id = 0);
+
+			$this->load->model('localisation/country');
+
+			$data['countries'] = $this->model_localisation_country->getCountries();
+
+			if (isset($this->session->data['shipping_method'])) {
+				$data['shipping_method'] = $this->session->data['shipping_method']['code'];
+			} else {
+				$data['shipping_method'] = '';
+			}
 
 			$data['product_id'] = (int)$this->request->get['product_id'];
 			$data['manufacturer'] = $product_info['manufacturer'];
@@ -428,7 +488,13 @@ class ControllerProductProduct extends Controller {
 					$rating = false;
 				}
 
+				 if ((float) $result['special']) {
+					$preco = $result['special'];
+				} else {
+					$preco = $result['price'];
+				}
 				$data['products'][] = array(
+					'parcelamento' => $this->model_catalog_product->getParcelamento($preco, $result['tax_class_id']),
 					'product_id'  => $result['product_id'],
 					'thumb'       => $image,
 					'name'        => $result['name'],
@@ -622,6 +688,215 @@ class ControllerProductProduct extends Controller {
 		$this->response->addHeader('Content-Type: application/json');
 		$this->response->setOutput(json_encode($json));
 	}
+
+
+	public function estado_autocompletar() {
+		$this->load->model('localisation/zone');
+		
+		$code = $this->model_localisation_zone->getZonesByEstado3($this->request->get['estado']);
+			if ($code != '') {
+				$output = $code;
+			} else {
+				$output = '';
+			}
+			$this->response->setOutput($output);
+			
+			}
+
+
+public function country() {
+$json = array();
+
+$this->load->model('localisation/country');
+
+$country_info = $this->model_localisation_country->getCountry($this->request->get['country_id']);
+
+if ($country_info) {
+	$this->load->model('localisation/zone');
+
+	$json = array(
+		'country_id'        => $country_info['country_id'],
+		'name'              => $country_info['name'],
+		'iso_code_2'        => $country_info['iso_code_2'],
+		'iso_code_3'        => $country_info['iso_code_3'],
+		'address_format'    => $country_info['address_format'],
+		'postcode_required' => $country_info['postcode_required'],
+		'zone'              => $this->model_localisation_zone->getZonesByCountryId($this->request->get['country_id']),
+		'status'            => $country_info['status']
+	);
+}
+
+$this->response->addHeader('Content-Type: application/json');
+$this->response->setOutput(json_encode($json));
+}
+
+public function quote() {
+
+$this->load->language('extension/total/shipping');
+
+$json = array();
+
+if (!$this->cart->hasProducts()) {
+	$json['error']['warning'] = $this->language->get('error_product');
+}
+
+if (!$this->cart->hasShipping()) {
+	$json['error']['warning'] = sprintf($this->language->get('error_no_shipping'), $this->url->link('information/contact'));
+}
+
+	
+if (utf8_strlen(preg_replace("/[^0-9]/", "", $this->request->post['postcode'])) != 8) {
+	$json['error']['postcode'] = 'Atenção: O CEP informado não é válido';
+}
+		
+							
+$this->load->model('localisation/country');
+
+$country_info = $this->model_localisation_country->getCountry($this->request->post['country_id']);
+
+
+if ($country_info && $country_info['postcode_required'] && (utf8_strlen(trim($this->request->post['postcode'])) < 1 || utf8_strlen(trim(preg_replace("/[^0-9]/", "",$this->request->post['postcode']))) > 8)) {
+	$json['error']['postcode'] = $this->language->get('error_postcode');
+}
+
+
+if (!$json) {
+	$this->tax->setShippingAddress($this->request->post['country_id'], $this->request->post['zone_id']);
+
+	if ($country_info) {
+		$country = $country_info['name'];
+		$iso_code_2 = $country_info['iso_code_2'];
+		$iso_code_3 = $country_info['iso_code_3'];
+		$address_format = $country_info['address_format'];
+	} else {
+		$country = '';
+		$iso_code_2 = '';
+		$iso_code_3 = '';
+		$address_format = '';
+	}
+
+	$this->load->model('localisation/zone');
+
+	$zone_info = $this->model_localisation_zone->getZone($this->request->post['zone_id']);
+
+	if ($zone_info) {
+		$zone = $zone_info['name'];
+		$zone_code = $zone_info['code'];
+	} else {
+		$zone = '';
+		$zone_code = '';
+	}
+
+	$this->session->data['shipping_address'] = array(
+		'firstname'      => '',
+		'lastname'       => '',
+		'company'        => '',
+		'address_1'      => '',
+		'address_2'      => '',
+		'postcode'       => $this->request->post['postcode'],
+		'city'           => '',
+		'zone_id'        => $this->request->post['zone_id'],
+		'zone'           => $zone,
+		'zone_code'      => $zone_code,
+		'country_id'     => $this->request->post['country_id'],
+		'country'        => $country,
+		'iso_code_2'     => $iso_code_2,
+		'iso_code_3'     => $iso_code_3,
+		'address_format' => $address_format
+	);
+
+	$quote_data = array();
+
+	$this->load->model('setting/extension');
+
+	$results = $this->model_setting_extension->getExtensions('shipping');
+
+	foreach ($results as $result) {
+		if ($this->config->get('shipping_' . $result['code'] . '_status')) {
+			$this->load->model('extension/shipping/' . $result['code']);
+
+			$quote = $this->{'model_extension_shipping_' . $result['code']}->getQuote($this->session->data['shipping_address']);
+
+			if ($quote) {
+				$quote_data[$result['code']] = array(
+					'title'      => $quote['title'],
+					'quote'      => $quote['quote'],
+					'sort_order' => $quote['sort_order'],
+					'error'      => $quote['error']
+				);
+			}
+		}
+	}
+
+	$sort_order = array();
+
+	foreach ($quote_data as $key => $value) {
+		$sort_order[$key] = $value['sort_order'];
+	}
+
+	array_multisort($sort_order, SORT_ASC, $quote_data);
+
+	$this->session->data['shipping_methods'] = $quote_data;
+
+	if ($this->session->data['shipping_methods']) {
+		$json['shipping_method'] = $this->session->data['shipping_methods'];
+	} else {
+		$json['error']['warning'] = sprintf($this->language->get('error_no_shipping'), $this->url->link('information/contact'));
+	}
+}
+
+$this->cart->clear();
+
+foreach ($this->session->data['cacheCart'] as $product_cart) :
+	$this->cart->add($product_cart['product_id'], $product_cart['quantity'],
+					 $product_cart['option'], $this->session->data['PID']);
+endforeach;
+unset($this->session->data['cacheCart']);
+unset($this->session->data['PID']);
+
+$this->response->addHeader('Content-Type: application/json');
+$this->response->setOutput(json_encode($json));
+}
+
+public function quoteProduct() {
+$this->session->data['cacheCart'] = $this->cart->getProducts();
+$this->cart->clear();
+
+if (isset($this->request->post['product_id'])) :
+	$product_id = $this->request->post['product_id'];
+else :
+	$product_id = 0;
+endif;
+
+$this->load->model('catalog/product');
+$product_info = $this->model_catalog_product->getProduct($product_id);
+
+if ($product_info) {
+	if (isset($this->request->post['quantity'])) {
+		$quantity = $this->request->post['quantity'];
+	} else {
+		$quantity = 1;
+	}
+
+	if (isset($this->request->post['option'])) {
+		$option = array_filter($this->request->post['option']);
+	} else {
+		$option = array();
+	}
+
+	if (isset($this->request->post['profile_id'])) {
+		$profile_id = $this->request->post['profile_id'];
+	} else {
+		$profile_id = 0;
+	}
+
+	$this->session->data['PID'] = $profile_id;
+	$this->cart->add($this->request->post['product_id'], $quantity, $option, $profile_id);
+}
+$json['success'] = 1;
+$this->response->addHeader('Content-Type: application/json');
+$this->response->setOutput(json_encode($json));
+}
 
 	public function getRecurringDescription() {
 		$this->load->language('product/product');

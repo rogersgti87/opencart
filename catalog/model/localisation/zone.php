@@ -1,5 +1,16 @@
 <?php
 class ModelLocalisationZone extends Model {
+
+	public function getZonesByEstado3($estado) {
+		if(strlen($estado) <= 2){
+			$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "zone WHERE country_id = '30' AND code = '". $estado ."' AND status = '1' ORDER BY name");
+			$zone_id = $query->row['zone_id'];
+		} else {
+			$zone_id = '';
+		}
+		return $zone_id;
+	}
+	
 	public function getZone($zone_id) {
 		$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "zone WHERE zone_id = '" . (int)$zone_id . "' AND status = '1'");
 

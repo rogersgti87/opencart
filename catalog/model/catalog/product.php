@@ -1,5 +1,235 @@
 <?php
 class ModelCatalogProduct extends Model {
+
+	private function getParcelar($total, $parcela) {
+        $parcelas = $this->config->get('module_parcelamento_parcelas');
+        $calculo_juros = $this->config->get('module_parcelamento_calculo_juros');
+        $juros_mes = ($this->config->get('module_parcelamento_juros')) ? $this->config->get('module_parcelamento_juros') : 0;
+        $fator = $juros_mes * 0.01;
+        $valorParcela = 0;
+
+        if ($parcela > $parcelas) {
+            $parcela = $parcelas;
+        }
+
+        if ($calculo_juros == 'simples') {
+            $valorParcela = ($total*pow((1+$fator),$parcela)*$fator)/(pow((1+$fator),$parcela)-1);
+        } else if ($calculo_juros == 'composto') {
+            $valorParcela = ($total*pow((1+$fator), $parcela))/$parcela;
+        } else if ($calculo_juros == 'tabela') {
+            $juros = 0;
+            $tabela = $this->config->get('module_parcelamento_tabela');
+            if (is_array($tabela)) {
+                if (count($tabela) > 0) {
+                    for ($i = 0; $i < count($tabela); $i++) {
+                        if ($tabela[$i]['parcelas'] == $parcela) {
+                            $juros = $tabela[$i]['juros'];
+                            break;
+                        }
+                    }
+                    $fator = ($juros * 0.01) + 1;
+                    $montante = $total * $fator;
+                    $valorParcela = ($montante / $parcela);
+                }
+            }
+        }
+
+        $valorParcela = round($valorParcela, 2);
+        $valorTotal = $parcela * $valorParcela;
+
+        $resultado = array(
+            'valorParcela' => $valorParcela,
+            'valorTotal' => $valorTotal
+        );
+
+        return $resultado;
+    }
+
+    private function getDemonstrativo($total) {
+        $parcelamento = array();
+
+        $currency_code = $this->session->data['currency'];
+        $parcelas = $this->config->get('module_parcelamento_parcelas');
+        $sem_juros = $this->config->get('module_parcelamento_sem_juros');
+        $minimo = ($this->config->get('module_parcelamento_minimo') > 0) ? $this->config->get('module_parcelamento_minimo') : '0';
+
+        for ($i = 1; $i <= $parcelas; $i++) {
+            if ($i == 1) {
+                $parcelamento[] = array(
+                    'parcela' => $i,
+                    'valor' => $this->currency->format($total, $currency_code),
+                    'juros' => false,
+                    'total' => $this->currency->format($total, $currency_code)
+                );
+            } else {
+                if ($i <= $sem_juros) {
+                    $valorParcela = ($total/$i);
+                    if ($valorParcela >= $minimo) {
+                        $parcelamento[] = array(
+                            'parcela' => $i,
+                            'valor' => $this->currency->format($valorParcela, $currency_code),
+                            'juros' => false,
+                            'total' => $this->currency->format($total, $currency_code)
+                        );
+                    }
+                } else {
+                    $resultado = $this->getParcelar($total, $i);
+                    if ($resultado['valorParcela'] >= $minimo) {
+                        $parcelamento[] = array(
+                            'parcela' => $i,
+                            'valor' => $this->currency->format($resultado['valorParcela'], $currency_code),
+                            'juros' => true,
+                            'total' => $this->currency->format($resultado['valorTotal'], $currency_code)
+                        );
+                    }
+                }
+            }
+        }
+
+        return $parcelamento;
+    }
+
+    public function getParcelamento($preco, $tax_class_id, $detalhes = false) {
+        $parcelamento = '';
+
+        if ($this->config->get('module_parcelamento_status')) {
+            $valor_minimo = $this->config->get('module_parcelamento_total');
+            if ($preco > 0 && $preco >= $valor_minimo) {
+                if (in_array($this->config->get('config_store_id'), $this->config->get('module_parcelamento_stores'))) {
+                    if ($this->session->data['language'] == $this->config->get('module_parcelamento_language_id')) {
+                        $currency_code = $this->session->data['currency'];
+                        if ($currency_code == $this->config->get('module_parcelamento_currency_id')) {
+                            if ($this->customer->isLogged()) {
+                                $customerGroupId = $this->customer->getGroupId();
+                            } else {
+                                $customerGroupId = $this->config->get('config_customer_group_id');
+                            }
+                            if (in_array($customerGroupId, $this->config->get('module_parcelamento_customer_groups'))) {
+                                $desconto = ($this->config->get('module_parcelamento_desconto')) ? $this->config->get('module_parcelamento_desconto') : 0;
+                                $total_parcelas = $this->config->get('module_parcelamento_parcelas');
+                                $juros_mes = ($this->config->get('module_parcelamento_juros')) ? $this->config->get('module_parcelamento_juros') : 0;
+                                $sem_juros = $this->config->get('module_parcelamento_sem_juros');
+                                $minimo = $this->config->get('module_parcelamento_minimo');
+                                $imagem = $this->config->get('module_parcelamento_imagem');
+                                $layout_modulos = $this->config->get('module_parcelamento_layout_modulos');
+                                $layout_produto = $this->config->get('module_parcelamento_layout_produto');
+                                $layout_parcelas = $this->config->get('module_parcelamento_layout_parcelas');
+
+                                $parcela_minima = ($minimo > 0) ? $minimo : 0;
+                                $sem_juros = ($sem_juros > 0) ? $sem_juros : 1;
+
+                                $parcelas_sem_juros = 1;
+                                for ($p = 1; $p <= $sem_juros; $p++) {
+                                    if (($preco/$p) >= $parcela_minima) {
+                                        $parcelas_sem_juros = $p;
+                                    }
+                                }
+
+                                $sjuros = $preco/$parcelas_sem_juros;
+                                $sjuros = round($sjuros, 2);
+                                $residuo = $preco-($sjuros*$parcelas_sem_juros);
+                                $sjuros = ($residuo > 0) ? $sjuros+0.01 : $sjuros;
+                                $valor_parcela_sem_juros = $sjuros;
+
+                                $sjuros = $this->currency->format($this->tax->calculate($sjuros, $tax_class_id, $this->config->get('config_tax')), $currency_code);
+
+                                $total_parcelas = ($total_parcelas > 0) ? $total_parcelas : 1;
+
+                                $parcelas = 1;
+                                for ($p = 1; $p <= $total_parcelas; $p++) {
+                                    $resultado = $this->getParcelar($preco, $p);
+                                    if ($resultado['valorParcela'] >= $parcela_minima) {
+                                        $parcelas = $p;
+                                    }
+                                }
+
+                                $resultado = $this->getParcelar($preco, $parcelas);
+                                $cjuros = $resultado['valorParcela'];
+                                $valor_parcela_com_juros = $cjuros;
+                                $cjuros = $this->currency->format($this->tax->calculate($cjuros, $tax_class_id, $this->config->get('config_tax')), $currency_code);
+
+                                if ($desconto > 0) {
+                                    $vdesconto = $preco-(($preco*$desconto)/100);
+                                    $veconomia = $preco-$vdesconto;
+                                    $vdesconto = $this->currency->format($this->tax->calculate($vdesconto, $tax_class_id, $this->config->get('config_tax')), $currency_code);
+                                    $veconomia = $this->currency->format($this->tax->calculate($veconomia, $tax_class_id, $this->config->get('config_tax')), $currency_code);
+                                } else {
+                                    $vdesconto = $preco;
+                                    $veconomia = 0;
+                                    $vdesconto = $this->currency->format($this->tax->calculate($vdesconto, $tax_class_id, $this->config->get('config_tax')), $currency_code);
+                                    $veconomia = $this->currency->format($veconomia, $currency_code);
+                                }
+
+                                $preco_formatado = $this->currency->format($this->tax->calculate($preco, $tax_class_id, $this->config->get('config_tax')), $currency_code);
+
+                                if ($detalhes) {
+                                    if (isset($imagem)) {
+                                        $imagem = '<img src="'.HTTPS_SERVER.'image/'.$imagem.'" />';
+                                    } else {
+                                        $imagem = '';
+                                    }
+
+                                    $resultado = $this->getDemonstrativo($preco);
+
+                                    $demonstrativo = '';
+
+                                    if (is_array($resultado)) {
+                                        $params_input = array('{parcelas}', '{parcela}', '{total}', '{juros}');
+
+                                        for ($i = 0; $i <= count($resultado)-1; $i++) {
+                                            $qtd_parcela = str_pad($resultado[$i]['parcela'], 2, "0", STR_PAD_LEFT);
+                                            if ($resultado[$i]['parcela'] == '1' || $resultado[$i]['juros'] == false) {
+                                                $params_output = array($qtd_parcela, $resultado[$i]['valor'], $resultado[$i]['total'], $this->config->get('module_parcelamento_texto_sem_juros'));
+                                                $demonstrativo .= str_replace($params_input, $params_output, $layout_parcelas);
+                                            } else {
+                                                $params_output = array($qtd_parcela, $resultado[$i]['valor'], $resultado[$i]['total'], $this->config->get('module_parcelamento_texto_com_juros'));
+                                                $demonstrativo .= str_replace($params_input, $params_output, $layout_parcelas);
+                                            }
+                                        }
+                                    }
+
+                                    $params_input = array('{preco}', '{desconto}', '{parcelas}', '{sem_juros}', '{juros_mes}', '{sjuros}', '{cjuros}', '{vdesconto}', '{veconomia}', '{imagem}', '{demonstrativo}');
+                                    $params_output = array($preco_formatado, $desconto, $parcelas, $parcelas_sem_juros, $juros_mes, $sjuros, $cjuros, $vdesconto, $veconomia, $imagem, $demonstrativo);
+
+                                    $output = str_replace($params_input, $params_output, $layout_produto);
+                                } else {
+                                    $params_input = array('{preco}', '{desconto}', '{parcelas}', '{sem_juros}', '{juros_mes}', '{sjuros}', '{cjuros}', '{vdesconto}', '{veconomia}');
+                                    $params_output = array($preco_formatado, $desconto, $parcelas, $parcelas_sem_juros, $juros_mes, $sjuros, $cjuros, $vdesconto, $veconomia);
+
+                                    $output = str_replace($params_input, $params_output, $layout_modulos);
+                                }
+
+                                if ($parcelas_sem_juros > 0 && $valor_parcela_sem_juros < $valor_minimo) {
+                                    $output = preg_replace("/(({sjminimo(.*?)?})(.*?)(\/sjminimo}))/sim", "", $output);
+                                } else {
+                                    $output = str_replace(array('{sjminimo}','{/sjminimo}'), array('',''), $output);
+                                }
+
+                                if ($juros_mes > 0 && $parcelas <= $sem_juros) {
+                                    $output = preg_replace("/(({cjminimo(.*?)?})(.*?)(\/cjminimo}))/sim", "", $output);
+                                } else {
+                                    if ($valor_parcela_com_juros < $valor_minimo) {
+                                        $output = preg_replace("/(({cjminimo(.*?)?})(.*?)(\/cjminimo}))/sim", "", $output);
+                                    } else {
+                                        $output = str_replace(array('{cjminimo}','{/cjminimo}'), array('',''), $output);
+                                    }
+                                }
+
+                                /* Remove as quebras de linha do layout para evitar problemas */
+                                $output = trim(preg_replace('/\s/',' ', $output));
+
+                                /* Prepara o layout para ser exibido */
+                                $parcelamento = html_entity_decode($output, ENT_QUOTES, 'UTF-8');
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        return $parcelamento;
+    }
+
 	public function updateViewed($product_id) {
 		$this->db->query("UPDATE " . DB_PREFIX . "product SET viewed = (viewed + 1) WHERE product_id = '" . (int)$product_id . "'");
 	}

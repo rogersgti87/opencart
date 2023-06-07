@@ -1628,4 +1628,17 @@
   $('#option a:first').tab('show');
   //--></script>
 </div>
+
+<script type="text/javascript"><!--
+  {% for language in languages %}
+  $('input[name="product_description[{{ language.language_id }}][name]').stringToSlug({
+    setEvents: 'keyup keydown blur',
+    getPut: 'input[name="product_seo_url[0][{{ language.language_id }}]"]',
+    space: '-',
+    replace: '/\s?\([^\)]*\)/gi',
+    AND: 'e'
+  });
+  {% endfor %}
+//--></script>
+
 {{ footer }} 
