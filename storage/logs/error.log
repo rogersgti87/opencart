@@ -1,0 +1,189 @@
+2022-08-19 23:45:11 - PHP Warning:  fopen(/Applications/XAMPP/xamppfiles/htdocs/opencart/admin/view/stylesheet/bootstrap.css): failed to open stream: Permission denied in /Applications/XAMPP/xamppfiles/htdocs/opencart/admin/controller/startup/sass.php on line 19
+2022-08-19 23:45:11 - PHP Warning:  flock() expects parameter 1 to be resource, bool given in /Applications/XAMPP/xamppfiles/htdocs/opencart/admin/controller/startup/sass.php on line 21
+2022-08-19 23:45:11 - PHP Warning:  fwrite() expects parameter 1 to be resource, bool given in /Applications/XAMPP/xamppfiles/htdocs/opencart/admin/controller/startup/sass.php on line 23
+2022-08-19 23:45:11 - PHP Warning:  fflush() expects parameter 1 to be resource, bool given in /Applications/XAMPP/xamppfiles/htdocs/opencart/admin/controller/startup/sass.php on line 25
+2022-08-19 23:45:11 - PHP Warning:  flock() expects parameter 1 to be resource, bool given in /Applications/XAMPP/xamppfiles/htdocs/opencart/admin/controller/startup/sass.php on line 27
+2022-08-19 23:45:11 - PHP Warning:  fclose() expects parameter 1 to be resource, bool given in /Applications/XAMPP/xamppfiles/htdocs/opencart/admin/controller/startup/sass.php on line 29
+2022-08-19 23:45:29 - PHP Warning:  fopen(/Applications/XAMPP/xamppfiles/htdocs/opencart/admin/view/stylesheet/bootstrap.css): failed to open stream: Permission denied in /Applications/XAMPP/xamppfiles/htdocs/opencart/admin/controller/startup/sass.php on line 19
+2022-08-19 23:45:29 - PHP Warning:  flock() expects parameter 1 to be resource, bool given in /Applications/XAMPP/xamppfiles/htdocs/opencart/admin/controller/startup/sass.php on line 21
+2022-08-19 23:45:29 - PHP Warning:  fwrite() expects parameter 1 to be resource, bool given in /Applications/XAMPP/xamppfiles/htdocs/opencart/admin/controller/startup/sass.php on line 23
+2022-08-19 23:45:29 - PHP Warning:  fflush() expects parameter 1 to be resource, bool given in /Applications/XAMPP/xamppfiles/htdocs/opencart/admin/controller/startup/sass.php on line 25
+2022-08-19 23:45:29 - PHP Warning:  flock() expects parameter 1 to be resource, bool given in /Applications/XAMPP/xamppfiles/htdocs/opencart/admin/controller/startup/sass.php on line 27
+2022-08-19 23:45:29 - PHP Warning:  fclose() expects parameter 1 to be resource, bool given in /Applications/XAMPP/xamppfiles/htdocs/opencart/admin/controller/startup/sass.php on line 29
+2022-08-19 23:45:29 - PHP Warning:  unlink(/Applications/XAMPP/xamppfiles/htdocs/opencart/admin/view/stylesheet/bootstrap.css): Permission denied in /Applications/XAMPP/xamppfiles/htdocs/opencart/admin/controller/common/developer.php on line 94
+2022-08-19 23:45:43 - PHP Warning:  fopen(/Applications/XAMPP/xamppfiles/htdocs/opencart/admin/view/stylesheet/bootstrap.css): failed to open stream: Permission denied in /Applications/XAMPP/xamppfiles/htdocs/opencart/admin/controller/startup/sass.php on line 19
+2022-08-19 23:45:43 - PHP Warning:  flock() expects parameter 1 to be resource, bool given in /Applications/XAMPP/xamppfiles/htdocs/opencart/admin/controller/startup/sass.php on line 21
+2022-08-19 23:45:43 - PHP Warning:  fwrite() expects parameter 1 to be resource, bool given in /Applications/XAMPP/xamppfiles/htdocs/opencart/admin/controller/startup/sass.php on line 23
+2022-08-19 23:45:43 - PHP Warning:  fflush() expects parameter 1 to be resource, bool given in /Applications/XAMPP/xamppfiles/htdocs/opencart/admin/controller/startup/sass.php on line 25
+2022-08-19 23:45:43 - PHP Warning:  flock() expects parameter 1 to be resource, bool given in /Applications/XAMPP/xamppfiles/htdocs/opencart/admin/controller/startup/sass.php on line 27
+2022-08-19 23:45:43 - PHP Warning:  fclose() expects parameter 1 to be resource, bool given in /Applications/XAMPP/xamppfiles/htdocs/opencart/admin/controller/startup/sass.php on line 29
+2022-08-19 23:46:08 - PHP Warning:  fopen(/Applications/XAMPP/xamppfiles/htdocs/opencart/admin/view/stylesheet/bootstrap.css): failed to open stream: Permission denied in /Applications/XAMPP/xamppfiles/htdocs/opencart/admin/controller/startup/sass.php on line 19
+2022-08-19 23:46:08 - PHP Warning:  flock() expects parameter 1 to be resource, bool given in /Applications/XAMPP/xamppfiles/htdocs/opencart/admin/controller/startup/sass.php on line 21
+2022-08-19 23:46:08 - PHP Warning:  fwrite() expects parameter 1 to be resource, bool given in /Applications/XAMPP/xamppfiles/htdocs/opencart/admin/controller/startup/sass.php on line 23
+2022-08-19 23:46:08 - PHP Warning:  fflush() expects parameter 1 to be resource, bool given in /Applications/XAMPP/xamppfiles/htdocs/opencart/admin/controller/startup/sass.php on line 25
+2022-08-19 23:46:08 - PHP Warning:  flock() expects parameter 1 to be resource, bool given in /Applications/XAMPP/xamppfiles/htdocs/opencart/admin/controller/startup/sass.php on line 27
+2022-08-19 23:46:08 - PHP Warning:  fclose() expects parameter 1 to be resource, bool given in /Applications/XAMPP/xamppfiles/htdocs/opencart/admin/controller/startup/sass.php on line 29
+2022-08-19 23:46:08 - PHP Warning:  unlink(/Applications/XAMPP/xamppfiles/htdocs/opencart/admin/view/stylesheet/bootstrap.css): Permission denied in /Applications/XAMPP/xamppfiles/htdocs/opencart/admin/controller/common/developer.php on line 94
+2022-08-19 23:46:14 - PHP Warning:  fopen(/Applications/XAMPP/xamppfiles/htdocs/opencart/admin/view/stylesheet/bootstrap.css): failed to open stream: Permission denied in /Applications/XAMPP/xamppfiles/htdocs/opencart/admin/controller/startup/sass.php on line 19
+2022-08-19 23:46:14 - PHP Warning:  flock() expects parameter 1 to be resource, bool given in /Applications/XAMPP/xamppfiles/htdocs/opencart/admin/controller/startup/sass.php on line 21
+2022-08-19 23:46:14 - PHP Warning:  fwrite() expects parameter 1 to be resource, bool given in /Applications/XAMPP/xamppfiles/htdocs/opencart/admin/controller/startup/sass.php on line 23
+2022-08-19 23:46:14 - PHP Warning:  fflush() expects parameter 1 to be resource, bool given in /Applications/XAMPP/xamppfiles/htdocs/opencart/admin/controller/startup/sass.php on line 25
+2022-08-19 23:46:14 - PHP Warning:  flock() expects parameter 1 to be resource, bool given in /Applications/XAMPP/xamppfiles/htdocs/opencart/admin/controller/startup/sass.php on line 27
+2022-08-19 23:46:14 - PHP Warning:  fclose() expects parameter 1 to be resource, bool given in /Applications/XAMPP/xamppfiles/htdocs/opencart/admin/controller/startup/sass.php on line 29
+2022-08-19 23:46:23 - PHP Warning:  fopen(/Applications/XAMPP/xamppfiles/htdocs/opencart/admin/view/stylesheet/bootstrap.css): failed to open stream: Permission denied in /Applications/XAMPP/xamppfiles/htdocs/opencart/admin/controller/startup/sass.php on line 19
+2022-08-19 23:46:23 - PHP Warning:  flock() expects parameter 1 to be resource, bool given in /Applications/XAMPP/xamppfiles/htdocs/opencart/admin/controller/startup/sass.php on line 21
+2022-08-19 23:46:23 - PHP Warning:  fwrite() expects parameter 1 to be resource, bool given in /Applications/XAMPP/xamppfiles/htdocs/opencart/admin/controller/startup/sass.php on line 23
+2022-08-19 23:46:23 - PHP Warning:  fflush() expects parameter 1 to be resource, bool given in /Applications/XAMPP/xamppfiles/htdocs/opencart/admin/controller/startup/sass.php on line 25
+2022-08-19 23:46:23 - PHP Warning:  flock() expects parameter 1 to be resource, bool given in /Applications/XAMPP/xamppfiles/htdocs/opencart/admin/controller/startup/sass.php on line 27
+2022-08-19 23:46:23 - PHP Warning:  fclose() expects parameter 1 to be resource, bool given in /Applications/XAMPP/xamppfiles/htdocs/opencart/admin/controller/startup/sass.php on line 29
+2022-08-19 23:46:24 - PHP Warning:  fopen(/Applications/XAMPP/xamppfiles/htdocs/opencart/admin/view/stylesheet/bootstrap.css): failed to open stream: Permission denied in /Applications/XAMPP/xamppfiles/htdocs/opencart/admin/controller/startup/sass.php on line 19
+2022-08-19 23:46:24 - PHP Warning:  flock() expects parameter 1 to be resource, bool given in /Applications/XAMPP/xamppfiles/htdocs/opencart/admin/controller/startup/sass.php on line 21
+2022-08-19 23:46:24 - PHP Warning:  fwrite() expects parameter 1 to be resource, bool given in /Applications/XAMPP/xamppfiles/htdocs/opencart/admin/controller/startup/sass.php on line 23
+2022-08-19 23:46:24 - PHP Warning:  fflush() expects parameter 1 to be resource, bool given in /Applications/XAMPP/xamppfiles/htdocs/opencart/admin/controller/startup/sass.php on line 25
+2022-08-19 23:46:24 - PHP Warning:  flock() expects parameter 1 to be resource, bool given in /Applications/XAMPP/xamppfiles/htdocs/opencart/admin/controller/startup/sass.php on line 27
+2022-08-19 23:46:24 - PHP Warning:  fclose() expects parameter 1 to be resource, bool given in /Applications/XAMPP/xamppfiles/htdocs/opencart/admin/controller/startup/sass.php on line 29
+2022-08-19 23:46:28 - PHP Warning:  fopen(/Applications/XAMPP/xamppfiles/htdocs/opencart/admin/view/stylesheet/bootstrap.css): failed to open stream: Permission denied in /Applications/XAMPP/xamppfiles/htdocs/opencart/admin/controller/startup/sass.php on line 19
+2022-08-19 23:46:28 - PHP Warning:  flock() expects parameter 1 to be resource, bool given in /Applications/XAMPP/xamppfiles/htdocs/opencart/admin/controller/startup/sass.php on line 21
+2022-08-19 23:46:28 - PHP Warning:  fwrite() expects parameter 1 to be resource, bool given in /Applications/XAMPP/xamppfiles/htdocs/opencart/admin/controller/startup/sass.php on line 23
+2022-08-19 23:46:28 - PHP Warning:  fflush() expects parameter 1 to be resource, bool given in /Applications/XAMPP/xamppfiles/htdocs/opencart/admin/controller/startup/sass.php on line 25
+2022-08-19 23:46:28 - PHP Warning:  flock() expects parameter 1 to be resource, bool given in /Applications/XAMPP/xamppfiles/htdocs/opencart/admin/controller/startup/sass.php on line 27
+2022-08-19 23:46:28 - PHP Warning:  fclose() expects parameter 1 to be resource, bool given in /Applications/XAMPP/xamppfiles/htdocs/opencart/admin/controller/startup/sass.php on line 29
+2022-08-19 23:46:29 - PHP Warning:  fopen(/Applications/XAMPP/xamppfiles/htdocs/opencart/admin/view/stylesheet/bootstrap.css): failed to open stream: Permission denied in /Applications/XAMPP/xamppfiles/htdocs/opencart/admin/controller/startup/sass.php on line 19
+2022-08-19 23:46:29 - PHP Warning:  flock() expects parameter 1 to be resource, bool given in /Applications/XAMPP/xamppfiles/htdocs/opencart/admin/controller/startup/sass.php on line 21
+2022-08-19 23:46:29 - PHP Warning:  fwrite() expects parameter 1 to be resource, bool given in /Applications/XAMPP/xamppfiles/htdocs/opencart/admin/controller/startup/sass.php on line 23
+2022-08-19 23:46:29 - PHP Warning:  fflush() expects parameter 1 to be resource, bool given in /Applications/XAMPP/xamppfiles/htdocs/opencart/admin/controller/startup/sass.php on line 25
+2022-08-19 23:46:29 - PHP Warning:  flock() expects parameter 1 to be resource, bool given in /Applications/XAMPP/xamppfiles/htdocs/opencart/admin/controller/startup/sass.php on line 27
+2022-08-19 23:46:29 - PHP Warning:  fclose() expects parameter 1 to be resource, bool given in /Applications/XAMPP/xamppfiles/htdocs/opencart/admin/controller/startup/sass.php on line 29
+2022-08-19 23:46:29 - PHP Warning:  fopen(/Applications/XAMPP/xamppfiles/htdocs/opencart/admin/view/stylesheet/bootstrap.css): failed to open stream: Permission denied in /Applications/XAMPP/xamppfiles/htdocs/opencart/admin/controller/startup/sass.php on line 19
+2022-08-19 23:46:29 - PHP Warning:  flock() expects parameter 1 to be resource, bool given in /Applications/XAMPP/xamppfiles/htdocs/opencart/admin/controller/startup/sass.php on line 21
+2022-08-19 23:46:29 - PHP Warning:  fwrite() expects parameter 1 to be resource, bool given in /Applications/XAMPP/xamppfiles/htdocs/opencart/admin/controller/startup/sass.php on line 23
+2022-08-19 23:46:29 - PHP Warning:  fflush() expects parameter 1 to be resource, bool given in /Applications/XAMPP/xamppfiles/htdocs/opencart/admin/controller/startup/sass.php on line 25
+2022-08-19 23:46:29 - PHP Warning:  flock() expects parameter 1 to be resource, bool given in /Applications/XAMPP/xamppfiles/htdocs/opencart/admin/controller/startup/sass.php on line 27
+2022-08-19 23:46:29 - PHP Warning:  fclose() expects parameter 1 to be resource, bool given in /Applications/XAMPP/xamppfiles/htdocs/opencart/admin/controller/startup/sass.php on line 29
+2022-08-19 23:49:05 - PHP Warning:  fopen(/Applications/XAMPP/xamppfiles/htdocs/opencart/admin/view/stylesheet/bootstrap.css): failed to open stream: Permission denied in /Applications/XAMPP/xamppfiles/htdocs/opencart/admin/controller/startup/sass.php on line 19
+2022-08-19 23:49:05 - PHP Warning:  flock() expects parameter 1 to be resource, bool given in /Applications/XAMPP/xamppfiles/htdocs/opencart/admin/controller/startup/sass.php on line 21
+2022-08-19 23:49:05 - PHP Warning:  fwrite() expects parameter 1 to be resource, bool given in /Applications/XAMPP/xamppfiles/htdocs/opencart/admin/controller/startup/sass.php on line 23
+2022-08-19 23:49:05 - PHP Warning:  fflush() expects parameter 1 to be resource, bool given in /Applications/XAMPP/xamppfiles/htdocs/opencart/admin/controller/startup/sass.php on line 25
+2022-08-19 23:49:05 - PHP Warning:  flock() expects parameter 1 to be resource, bool given in /Applications/XAMPP/xamppfiles/htdocs/opencart/admin/controller/startup/sass.php on line 27
+2022-08-19 23:49:05 - PHP Warning:  fclose() expects parameter 1 to be resource, bool given in /Applications/XAMPP/xamppfiles/htdocs/opencart/admin/controller/startup/sass.php on line 29
+2022-08-19 23:49:06 - PHP Warning:  fopen(/Applications/XAMPP/xamppfiles/htdocs/opencart/admin/view/stylesheet/bootstrap.css): failed to open stream: Permission denied in /Applications/XAMPP/xamppfiles/htdocs/opencart/admin/controller/startup/sass.php on line 19
+2022-08-19 23:49:06 - PHP Warning:  flock() expects parameter 1 to be resource, bool given in /Applications/XAMPP/xamppfiles/htdocs/opencart/admin/controller/startup/sass.php on line 21
+2022-08-19 23:49:06 - PHP Warning:  fwrite() expects parameter 1 to be resource, bool given in /Applications/XAMPP/xamppfiles/htdocs/opencart/admin/controller/startup/sass.php on line 23
+2022-08-19 23:49:06 - PHP Warning:  fflush() expects parameter 1 to be resource, bool given in /Applications/XAMPP/xamppfiles/htdocs/opencart/admin/controller/startup/sass.php on line 25
+2022-08-19 23:49:06 - PHP Warning:  flock() expects parameter 1 to be resource, bool given in /Applications/XAMPP/xamppfiles/htdocs/opencart/admin/controller/startup/sass.php on line 27
+2022-08-19 23:49:06 - PHP Warning:  fclose() expects parameter 1 to be resource, bool given in /Applications/XAMPP/xamppfiles/htdocs/opencart/admin/controller/startup/sass.php on line 29
+2022-08-19 23:49:06 - PHP Warning:  fopen(/Applications/XAMPP/xamppfiles/htdocs/opencart/admin/view/stylesheet/bootstrap.css): failed to open stream: Permission denied in /Applications/XAMPP/xamppfiles/htdocs/opencart/admin/controller/startup/sass.php on line 19
+2022-08-19 23:49:06 - PHP Warning:  flock() expects parameter 1 to be resource, bool given in /Applications/XAMPP/xamppfiles/htdocs/opencart/admin/controller/startup/sass.php on line 21
+2022-08-19 23:49:06 - PHP Warning:  fwrite() expects parameter 1 to be resource, bool given in /Applications/XAMPP/xamppfiles/htdocs/opencart/admin/controller/startup/sass.php on line 23
+2022-08-19 23:49:06 - PHP Warning:  fflush() expects parameter 1 to be resource, bool given in /Applications/XAMPP/xamppfiles/htdocs/opencart/admin/controller/startup/sass.php on line 25
+2022-08-19 23:49:06 - PHP Warning:  flock() expects parameter 1 to be resource, bool given in /Applications/XAMPP/xamppfiles/htdocs/opencart/admin/controller/startup/sass.php on line 27
+2022-08-19 23:49:06 - PHP Warning:  fclose() expects parameter 1 to be resource, bool given in /Applications/XAMPP/xamppfiles/htdocs/opencart/admin/controller/startup/sass.php on line 29
+2022-08-19 23:49:09 - PHP Warning:  fopen(/Applications/XAMPP/xamppfiles/htdocs/opencart/admin/view/stylesheet/bootstrap.css): failed to open stream: Permission denied in /Applications/XAMPP/xamppfiles/htdocs/opencart/admin/controller/startup/sass.php on line 19
+2022-08-19 23:49:09 - PHP Warning:  flock() expects parameter 1 to be resource, bool given in /Applications/XAMPP/xamppfiles/htdocs/opencart/admin/controller/startup/sass.php on line 21
+2022-08-19 23:49:09 - PHP Warning:  fwrite() expects parameter 1 to be resource, bool given in /Applications/XAMPP/xamppfiles/htdocs/opencart/admin/controller/startup/sass.php on line 23
+2022-08-19 23:49:09 - PHP Warning:  fflush() expects parameter 1 to be resource, bool given in /Applications/XAMPP/xamppfiles/htdocs/opencart/admin/controller/startup/sass.php on line 25
+2022-08-19 23:49:09 - PHP Warning:  flock() expects parameter 1 to be resource, bool given in /Applications/XAMPP/xamppfiles/htdocs/opencart/admin/controller/startup/sass.php on line 27
+2022-08-19 23:49:09 - PHP Warning:  fclose() expects parameter 1 to be resource, bool given in /Applications/XAMPP/xamppfiles/htdocs/opencart/admin/controller/startup/sass.php on line 29
+2022-08-19 23:49:10 - PHP Warning:  fopen(/Applications/XAMPP/xamppfiles/htdocs/opencart/admin/view/stylesheet/bootstrap.css): failed to open stream: Permission denied in /Applications/XAMPP/xamppfiles/htdocs/opencart/admin/controller/startup/sass.php on line 19
+2022-08-19 23:49:10 - PHP Warning:  flock() expects parameter 1 to be resource, bool given in /Applications/XAMPP/xamppfiles/htdocs/opencart/admin/controller/startup/sass.php on line 21
+2022-08-19 23:49:10 - PHP Warning:  fwrite() expects parameter 1 to be resource, bool given in /Applications/XAMPP/xamppfiles/htdocs/opencart/admin/controller/startup/sass.php on line 23
+2022-08-19 23:49:10 - PHP Warning:  fflush() expects parameter 1 to be resource, bool given in /Applications/XAMPP/xamppfiles/htdocs/opencart/admin/controller/startup/sass.php on line 25
+2022-08-19 23:49:10 - PHP Warning:  flock() expects parameter 1 to be resource, bool given in /Applications/XAMPP/xamppfiles/htdocs/opencart/admin/controller/startup/sass.php on line 27
+2022-08-19 23:49:10 - PHP Warning:  fclose() expects parameter 1 to be resource, bool given in /Applications/XAMPP/xamppfiles/htdocs/opencart/admin/controller/startup/sass.php on line 29
+2022-08-19 23:49:12 - PHP Warning:  fopen(/Applications/XAMPP/xamppfiles/htdocs/opencart/admin/view/stylesheet/bootstrap.css): failed to open stream: Permission denied in /Applications/XAMPP/xamppfiles/htdocs/opencart/admin/controller/startup/sass.php on line 19
+2022-08-19 23:49:12 - PHP Warning:  flock() expects parameter 1 to be resource, bool given in /Applications/XAMPP/xamppfiles/htdocs/opencart/admin/controller/startup/sass.php on line 21
+2022-08-19 23:49:12 - PHP Warning:  fwrite() expects parameter 1 to be resource, bool given in /Applications/XAMPP/xamppfiles/htdocs/opencart/admin/controller/startup/sass.php on line 23
+2022-08-19 23:49:12 - PHP Warning:  fflush() expects parameter 1 to be resource, bool given in /Applications/XAMPP/xamppfiles/htdocs/opencart/admin/controller/startup/sass.php on line 25
+2022-08-19 23:49:12 - PHP Warning:  flock() expects parameter 1 to be resource, bool given in /Applications/XAMPP/xamppfiles/htdocs/opencart/admin/controller/startup/sass.php on line 27
+2022-08-19 23:49:12 - PHP Warning:  fclose() expects parameter 1 to be resource, bool given in /Applications/XAMPP/xamppfiles/htdocs/opencart/admin/controller/startup/sass.php on line 29
+2022-08-19 23:49:12 - PHP Warning:  unlink(/Applications/XAMPP/xamppfiles/htdocs/opencart/admin/view/stylesheet/bootstrap.css): Permission denied in /Applications/XAMPP/xamppfiles/htdocs/opencart/admin/controller/common/developer.php on line 94
+2022-08-20 11:08:58 - PHP Warning:  fopen(4dd0cee8870fdfa9a77d0133d31e8238): failed to open stream: Permission denied in /Applications/XAMPP/xamppfiles/htdocs/opencart/system/library/sendpulse/api/sendpulse.php on line 111
+2022-08-20 11:08:58 - PHP Warning:  fwrite() expects parameter 1 to be resource, bool given in /Applications/XAMPP/xamppfiles/htdocs/opencart/system/library/sendpulse/api/sendpulse.php on line 112
+2022-08-20 11:08:58 - PHP Warning:  fclose() expects parameter 1 to be resource, bool given in /Applications/XAMPP/xamppfiles/htdocs/opencart/system/library/sendpulse/api/sendpulse.php on line 113
+2022-08-20 11:09:24 - PHP Warning:  fopen(4dd0cee8870fdfa9a77d0133d31e8238): failed to open stream: Permission denied in /Applications/XAMPP/xamppfiles/htdocs/opencart/system/library/sendpulse/api/sendpulse.php on line 111
+2022-08-20 11:09:24 - PHP Warning:  fwrite() expects parameter 1 to be resource, bool given in /Applications/XAMPP/xamppfiles/htdocs/opencart/system/library/sendpulse/api/sendpulse.php on line 112
+2022-08-20 11:09:24 - PHP Warning:  fclose() expects parameter 1 to be resource, bool given in /Applications/XAMPP/xamppfiles/htdocs/opencart/system/library/sendpulse/api/sendpulse.php on line 113
+2022-08-20 11:11:29 - PHP Warning:  fopen(4dd0cee8870fdfa9a77d0133d31e8238): failed to open stream: Permission denied in /Applications/XAMPP/xamppfiles/htdocs/opencart/system/library/sendpulse/api/sendpulse.php on line 111
+2022-08-20 11:11:29 - PHP Warning:  fwrite() expects parameter 1 to be resource, bool given in /Applications/XAMPP/xamppfiles/htdocs/opencart/system/library/sendpulse/api/sendpulse.php on line 112
+2022-08-20 11:11:29 - PHP Warning:  fclose() expects parameter 1 to be resource, bool given in /Applications/XAMPP/xamppfiles/htdocs/opencart/system/library/sendpulse/api/sendpulse.php on line 113
+2022-08-20 11:12:11 - PHP Warning:  fopen(4dd0cee8870fdfa9a77d0133d31e8238): failed to open stream: Permission denied in /Applications/XAMPP/xamppfiles/htdocs/opencart/system/library/sendpulse/api/sendpulse.php on line 111
+2022-08-20 11:12:11 - PHP Warning:  fwrite() expects parameter 1 to be resource, bool given in /Applications/XAMPP/xamppfiles/htdocs/opencart/system/library/sendpulse/api/sendpulse.php on line 112
+2022-08-20 11:12:11 - PHP Warning:  fclose() expects parameter 1 to be resource, bool given in /Applications/XAMPP/xamppfiles/htdocs/opencart/system/library/sendpulse/api/sendpulse.php on line 113
+2022-08-20 11:12:42 - PHP Warning:  fopen(4dd0cee8870fdfa9a77d0133d31e8238): failed to open stream: Permission denied in /Applications/XAMPP/xamppfiles/htdocs/opencart/system/library/sendpulse/api/sendpulse.php on line 111
+2022-08-20 11:12:42 - PHP Warning:  fwrite() expects parameter 1 to be resource, bool given in /Applications/XAMPP/xamppfiles/htdocs/opencart/system/library/sendpulse/api/sendpulse.php on line 112
+2022-08-20 11:12:42 - PHP Warning:  fclose() expects parameter 1 to be resource, bool given in /Applications/XAMPP/xamppfiles/htdocs/opencart/system/library/sendpulse/api/sendpulse.php on line 113
+2022-08-20 11:13:43 - PHP Warning:  fopen(4dd0cee8870fdfa9a77d0133d31e8238): failed to open stream: Permission denied in /Applications/XAMPP/xamppfiles/htdocs/opencart/system/library/sendpulse/api/sendpulse.php on line 111
+2022-08-20 11:13:43 - PHP Warning:  fwrite() expects parameter 1 to be resource, bool given in /Applications/XAMPP/xamppfiles/htdocs/opencart/system/library/sendpulse/api/sendpulse.php on line 112
+2022-08-20 11:13:43 - PHP Warning:  fclose() expects parameter 1 to be resource, bool given in /Applications/XAMPP/xamppfiles/htdocs/opencart/system/library/sendpulse/api/sendpulse.php on line 113
+2022-08-20 11:14:27 - PHP Warning:  fopen(4dd0cee8870fdfa9a77d0133d31e8238): failed to open stream: Permission denied in /Applications/XAMPP/xamppfiles/htdocs/opencart/system/library/sendpulse/api/sendpulse.php on line 111
+2022-08-20 11:14:27 - PHP Warning:  fwrite() expects parameter 1 to be resource, bool given in /Applications/XAMPP/xamppfiles/htdocs/opencart/system/library/sendpulse/api/sendpulse.php on line 112
+2022-08-20 11:14:27 - PHP Warning:  fclose() expects parameter 1 to be resource, bool given in /Applications/XAMPP/xamppfiles/htdocs/opencart/system/library/sendpulse/api/sendpulse.php on line 113
+2022-08-20 11:16:02 - PHP Warning:  fopen(4dd0cee8870fdfa9a77d0133d31e8238): failed to open stream: Permission denied in /Applications/XAMPP/xamppfiles/htdocs/opencart/system/library/sendpulse/api/sendpulse.php on line 111
+2022-08-20 11:16:02 - PHP Warning:  fwrite() expects parameter 1 to be resource, bool given in /Applications/XAMPP/xamppfiles/htdocs/opencart/system/library/sendpulse/api/sendpulse.php on line 112
+2022-08-20 11:16:02 - PHP Warning:  fclose() expects parameter 1 to be resource, bool given in /Applications/XAMPP/xamppfiles/htdocs/opencart/system/library/sendpulse/api/sendpulse.php on line 113
+2022-08-20 14:08:32 - PHP Notice:  Undefined variable: SPApiProxy in /Applications/XAMPP/xamppfiles/htdocs/opencart/admin/model/extension/module/sendpulse.php on line 17
+2022-08-20 14:09:55 - PHP Unknown:  Non-static method SendpulseApi::createAddressBook() should not be called statically in /Applications/XAMPP/xamppfiles/htdocs/opencart/admin/model/extension/module/sendpulse.php on line 17
+2022-08-20 14:17:46 - PHP Notice:  Undefined index: book in /Applications/XAMPP/xamppfiles/htdocs/opencart/admin/controller/marketing/contact.php on line 75
+2022-08-20 14:22:36 - PHP Notice:  Undefined variable: senderName in /Applications/XAMPP/xamppfiles/htdocs/opencart/admin/model/extension/module/sendpulse.php on line 21
+2022-08-20 14:22:36 - PHP Notice:  Undefined variable: senderEmail in /Applications/XAMPP/xamppfiles/htdocs/opencart/admin/model/extension/module/sendpulse.php on line 21
+2022-08-20 14:22:36 - PHP Notice:  Undefined variable: subject in /Applications/XAMPP/xamppfiles/htdocs/opencart/admin/model/extension/module/sendpulse.php on line 21
+2022-08-20 14:22:36 - PHP Notice:  Undefined variable: body in /Applications/XAMPP/xamppfiles/htdocs/opencart/admin/model/extension/module/sendpulse.php on line 21
+2022-08-20 14:22:36 - PHP Notice:  Undefined variable: bookId in /Applications/XAMPP/xamppfiles/htdocs/opencart/admin/model/extension/module/sendpulse.php on line 21
+2022-08-20 15:57:05 - PHP Notice:  Undefined variable: data in /Applications/XAMPP/xamppfiles/htdocs/opencart/admin/model/extension/module/sendpulse.php on line 19
+2022-08-20 16:09:06 - PHP Notice:  Array to string conversion in /Applications/XAMPP/xamppfiles/htdocs/opencart/storage/cache/template/17/17bfe1c0e3cec85461bd104000ecc1b5dd61d212c62d0e7fc5c3c57cd90dabec.php on line 308
+2022-08-20 16:09:06 - PHP Notice:  Array to string conversion in /Applications/XAMPP/xamppfiles/htdocs/opencart/storage/cache/template/17/17bfe1c0e3cec85461bd104000ecc1b5dd61d212c62d0e7fc5c3c57cd90dabec.php on line 308
+2022-08-20 16:09:06 - PHP Notice:  Array to string conversion in /Applications/XAMPP/xamppfiles/htdocs/opencart/storage/cache/template/17/17bfe1c0e3cec85461bd104000ecc1b5dd61d212c62d0e7fc5c3c57cd90dabec.php on line 308
+2022-08-20 16:10:04 - PHP Notice:  Array to string conversion in /Applications/XAMPP/xamppfiles/htdocs/opencart/storage/cache/template/17/17bfe1c0e3cec85461bd104000ecc1b5dd61d212c62d0e7fc5c3c57cd90dabec.php on line 308
+2022-08-20 16:10:04 - PHP Notice:  Array to string conversion in /Applications/XAMPP/xamppfiles/htdocs/opencart/storage/cache/template/17/17bfe1c0e3cec85461bd104000ecc1b5dd61d212c62d0e7fc5c3c57cd90dabec.php on line 308
+2022-08-20 16:10:04 - PHP Notice:  Array to string conversion in /Applications/XAMPP/xamppfiles/htdocs/opencart/storage/cache/template/17/17bfe1c0e3cec85461bd104000ecc1b5dd61d212c62d0e7fc5c3c57cd90dabec.php on line 308
+2022-08-20 16:48:30 - PHP Notice:  Undefined index: module_sendpulse_sender_default in /Applications/XAMPP/xamppfiles/htdocs/opencart/admin/controller/extension/module/sendpulse.php on line 101
+2022-08-20 16:48:38 - PHP Notice:  Undefined index: module_sendpulse_sender_default in /Applications/XAMPP/xamppfiles/htdocs/opencart/admin/controller/extension/module/sendpulse.php on line 101
+2022-08-20 16:48:53 - PHP Notice:  Undefined index: module_sendpulse_sender_default in /Applications/XAMPP/xamppfiles/htdocs/opencart/admin/controller/extension/module/sendpulse.php on line 101
+2022-08-20 16:50:20 - PHP Notice:  Undefined index: module_sendpulse_sender_default in /Applications/XAMPP/xamppfiles/htdocs/opencart/admin/controller/extension/module/sendpulse.php on line 95
+2022-08-20 16:50:31 - PHP Notice:  Undefined index: module_sendpulse_sender_default in /Applications/XAMPP/xamppfiles/htdocs/opencart/admin/controller/extension/module/sendpulse.php on line 95
+2022-08-21 10:59:00 - PHP Notice:  Trying to access array offset on value of type null in /Applications/XAMPP/xamppfiles/htdocs/opencart/admin/controller/marketing/contact.php on line 14
+2022-08-21 11:03:45 - PHP Notice:  Undefined property: Url::$link in /Applications/XAMPP/xamppfiles/htdocs/opencart/admin/controller/marketing/contact.php on line 14
+2022-08-21 14:11:19 - PHP Notice:  Trying to get property 'image' of non-object in /Applications/XAMPP/xamppfiles/htdocs/opencart/admin/controller/marketing/contact.php on line 95
+2022-08-21 14:11:19 - PHP Notice:  Trying to get property 'keyword' of non-object in /Applications/XAMPP/xamppfiles/htdocs/opencart/admin/controller/marketing/contact.php on line 100
+2022-08-21 14:11:19 - PHP Notice:  Trying to get property 'name' of non-object in /Applications/XAMPP/xamppfiles/htdocs/opencart/admin/controller/marketing/contact.php on line 100
+2022-08-21 14:11:19 - PHP Notice:  Trying to get property 'price' of non-object in /Applications/XAMPP/xamppfiles/htdocs/opencart/admin/controller/marketing/contact.php on line 105
+2022-08-21 14:11:19 - PHP Notice:  Trying to get property 'image' of non-object in /Applications/XAMPP/xamppfiles/htdocs/opencart/admin/controller/marketing/contact.php on line 95
+2022-08-21 14:11:19 - PHP Notice:  Trying to get property 'keyword' of non-object in /Applications/XAMPP/xamppfiles/htdocs/opencart/admin/controller/marketing/contact.php on line 100
+2022-08-21 14:11:19 - PHP Notice:  Trying to get property 'name' of non-object in /Applications/XAMPP/xamppfiles/htdocs/opencart/admin/controller/marketing/contact.php on line 100
+2022-08-21 14:11:19 - PHP Notice:  Trying to get property 'price' of non-object in /Applications/XAMPP/xamppfiles/htdocs/opencart/admin/controller/marketing/contact.php on line 105
+2022-08-21 14:11:19 - PHP Notice:  Trying to get property 'image' of non-object in /Applications/XAMPP/xamppfiles/htdocs/opencart/admin/controller/marketing/contact.php on line 95
+2022-08-21 14:11:19 - PHP Notice:  Trying to get property 'keyword' of non-object in /Applications/XAMPP/xamppfiles/htdocs/opencart/admin/controller/marketing/contact.php on line 100
+2022-08-21 14:11:19 - PHP Notice:  Trying to get property 'name' of non-object in /Applications/XAMPP/xamppfiles/htdocs/opencart/admin/controller/marketing/contact.php on line 100
+2022-08-21 14:11:19 - PHP Notice:  Trying to get property 'price' of non-object in /Applications/XAMPP/xamppfiles/htdocs/opencart/admin/controller/marketing/contact.php on line 105
+2022-08-21 14:11:19 - PHP Notice:  Trying to get property 'image' of non-object in /Applications/XAMPP/xamppfiles/htdocs/opencart/admin/controller/marketing/contact.php on line 95
+2022-08-21 14:11:19 - PHP Notice:  Trying to get property 'keyword' of non-object in /Applications/XAMPP/xamppfiles/htdocs/opencart/admin/controller/marketing/contact.php on line 100
+2022-08-21 14:11:19 - PHP Notice:  Trying to get property 'name' of non-object in /Applications/XAMPP/xamppfiles/htdocs/opencart/admin/controller/marketing/contact.php on line 100
+2022-08-21 14:11:19 - PHP Notice:  Trying to get property 'price' of non-object in /Applications/XAMPP/xamppfiles/htdocs/opencart/admin/controller/marketing/contact.php on line 105
+2022-08-21 14:12:14 - PHP Warning:  Illegal string offset 'image' in /Applications/XAMPP/xamppfiles/htdocs/opencart/admin/controller/marketing/contact.php on line 95
+2022-08-21 14:12:14 - PHP Warning:  Illegal string offset 'keyword' in /Applications/XAMPP/xamppfiles/htdocs/opencart/admin/controller/marketing/contact.php on line 100
+2022-08-21 14:12:14 - PHP Warning:  Illegal string offset 'name' in /Applications/XAMPP/xamppfiles/htdocs/opencart/admin/controller/marketing/contact.php on line 100
+2022-08-21 14:12:14 - PHP Warning:  Illegal string offset 'price' in /Applications/XAMPP/xamppfiles/htdocs/opencart/admin/controller/marketing/contact.php on line 105
+2022-08-21 14:12:14 - PHP Warning:  number_format() expects parameter 1 to be float, string given in /Applications/XAMPP/xamppfiles/htdocs/opencart/admin/controller/marketing/contact.php on line 105
+2022-08-21 14:12:14 - PHP Warning:  Illegal string offset 'image' in /Applications/XAMPP/xamppfiles/htdocs/opencart/admin/controller/marketing/contact.php on line 95
+2022-08-21 14:12:14 - PHP Warning:  Illegal string offset 'keyword' in /Applications/XAMPP/xamppfiles/htdocs/opencart/admin/controller/marketing/contact.php on line 100
+2022-08-21 14:12:14 - PHP Warning:  Illegal string offset 'name' in /Applications/XAMPP/xamppfiles/htdocs/opencart/admin/controller/marketing/contact.php on line 100
+2022-08-21 14:12:14 - PHP Warning:  Illegal string offset 'price' in /Applications/XAMPP/xamppfiles/htdocs/opencart/admin/controller/marketing/contact.php on line 105
+2022-08-21 14:12:14 - PHP Warning:  Illegal string offset 'image' in /Applications/XAMPP/xamppfiles/htdocs/opencart/admin/controller/marketing/contact.php on line 95
+2022-08-21 14:12:14 - PHP Warning:  Illegal string offset 'keyword' in /Applications/XAMPP/xamppfiles/htdocs/opencart/admin/controller/marketing/contact.php on line 100
+2022-08-21 14:12:14 - PHP Warning:  Illegal string offset 'name' in /Applications/XAMPP/xamppfiles/htdocs/opencart/admin/controller/marketing/contact.php on line 100
+2022-08-21 14:12:14 - PHP Warning:  Illegal string offset 'price' in /Applications/XAMPP/xamppfiles/htdocs/opencart/admin/controller/marketing/contact.php on line 105
+2022-08-21 14:12:14 - PHP Warning:  number_format() expects parameter 1 to be float, string given in /Applications/XAMPP/xamppfiles/htdocs/opencart/admin/controller/marketing/contact.php on line 105
+2022-08-21 14:12:14 - PHP Warning:  Illegal string offset 'image' in /Applications/XAMPP/xamppfiles/htdocs/opencart/admin/controller/marketing/contact.php on line 95
+2022-08-21 14:12:14 - PHP Warning:  Illegal string offset 'keyword' in /Applications/XAMPP/xamppfiles/htdocs/opencart/admin/controller/marketing/contact.php on line 100
+2022-08-21 14:12:14 - PHP Warning:  Illegal string offset 'name' in /Applications/XAMPP/xamppfiles/htdocs/opencart/admin/controller/marketing/contact.php on line 100
+2022-08-21 14:12:14 - PHP Warning:  Illegal string offset 'price' in /Applications/XAMPP/xamppfiles/htdocs/opencart/admin/controller/marketing/contact.php on line 105
+2022-08-21 14:12:14 - PHP Warning:  number_format() expects parameter 1 to be float, string given in /Applications/XAMPP/xamppfiles/htdocs/opencart/admin/controller/marketing/contact.php on line 105
+2022-08-21 18:27:56 - PHP Notice:  Undefined index: product in /Applications/XAMPP/xamppfiles/htdocs/opencart/admin/controller/marketing/contact.php on line 80
+2022-08-21 18:27:56 - PHP Warning:  implode(): Invalid arguments passed in /Applications/XAMPP/xamppfiles/htdocs/opencart/admin/controller/marketing/contact.php on line 80
+2022-08-21 18:31:35 - PHP Notice:  Undefined index: error in /Applications/XAMPP/xamppfiles/htdocs/opencart/admin/controller/marketing/contact.php on line 77
+2022-08-21 18:31:35 - PHP Notice:  Undefined index: product in /Applications/XAMPP/xamppfiles/htdocs/opencart/admin/controller/marketing/contact.php on line 86
+2022-08-21 18:31:35 - PHP Warning:  implode(): Invalid arguments passed in /Applications/XAMPP/xamppfiles/htdocs/opencart/admin/controller/marketing/contact.php on line 86
+2022-08-21 18:32:40 - PHP Notice:  Undefined index: error in /Applications/XAMPP/xamppfiles/htdocs/opencart/admin/controller/marketing/contact.php on line 77
+2022-08-21 18:32:40 - PHP Notice:  Trying to access array offset on value of type null in /Applications/XAMPP/xamppfiles/htdocs/opencart/admin/controller/marketing/contact.php on line 77
+2022-08-21 18:32:40 - PHP Notice:  Undefined index: product in /Applications/XAMPP/xamppfiles/htdocs/opencart/admin/controller/marketing/contact.php on line 86
+2022-08-21 18:32:40 - PHP Warning:  implode(): Invalid arguments passed in /Applications/XAMPP/xamppfiles/htdocs/opencart/admin/controller/marketing/contact.php on line 86
