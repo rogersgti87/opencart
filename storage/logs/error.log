@@ -1,0 +1,4 @@
+2023-06-12 13:28:06 - PHP Warning:  mysqli::query(): (42000/3143): Invalid JSON path expression. The error is around character position 3. in C:\laragon\www\opencart\system\library\db\mysqli.php on line 24
+2023-06-12 13:34:44 - PHP Warning:  mysqli::query(): (42000/3143): Invalid JSON path expression. The error is around character position 3. in C:\laragon\www\opencart\system\library\db\mysqli.php on line 24
+2023-06-12 15:23:02 - PHP Warning:  mysqli::query(): (42000/3143): Invalid JSON path expression. The error is around character position 3. in C:\laragon\www\opencart\system\library\db\mysqli.php on line 24
+2023-06-12 15:23:23 - PHP Warning:  mysqli::query(): (42000/3143): Invalid JSON path expression. The error is around character position 3. in C:\laragon\www\opencart\system\library\db\mysqli.php on line 24

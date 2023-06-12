@@ -12,6 +12,39 @@ class ModelExtensionModuleSendpulse extends Model
      * @param $secret
      */
 
+    public function getCampaign($id,$secret,$campaign_id){
+        if ($id != '' && $secret != '') {
+            try {
+                $SPApiProxy = new SendpulseApi($id, $secret, TOKEN_STORAGE);                               
+                $getCampaign = $SPApiProxy->getCampaignInfo( $campaign_id);
+                return $getCampaign;
+
+            } catch (Exception $e) {
+
+                return false;
+
+            }
+        }
+        return false;     
+    }
+
+    public function listCampaigns($id,$secret,$offset = Null){
+        if ($id != '' && $secret != '') {
+            try {
+                $SPApiProxy = new SendpulseApi($id, $secret, TOKEN_STORAGE);                               
+                $listCampaigns = $SPApiProxy->listCampaigns($offset);
+                return $listCampaigns;
+
+            } catch (Exception $e) {
+
+                return false;
+
+            }
+        }
+        return false;     
+    }
+
+
     public function listSenders($id,$secret){
         if ($id != '' && $secret != '') {
             try {
@@ -90,13 +123,14 @@ class ModelExtensionModuleSendpulse extends Model
         $this->load->language('extension/module/sendpulse');
         $this->load->model('setting/setting');
 
-        $custom_field_celular    = $this->config->get('module_sendpulse_celular');
-        $custom_field_sexo       = $this->config->get('module_sendpulse_sexo');
-        $custom_field_nascimento = $this->config->get('module_sendpulse_nascimento');
+        $custom_field_celular    = '"'.$this->config->get('module_sendpulse_celular').'"';
+        $custom_field_sexo       = '"'.$this->config->get('module_sendpulse_sexo').'"';
+        $custom_field_nascimento = '"'.$this->config->get('module_sendpulse_nascimento').'"';        
 
         $json = array();
         $count_emails = 0;
         if ($id != '' && $secret != '' && $id_book != '') {
+            
             
             $query = $this->db->query("SELECT a.email, a.firstname, a.lastname,b.name as sexo,
             trim(replace(replace(replace(a.telephone, ')',''), '(', ''), '-', '')) as telefone, 
@@ -105,6 +139,7 @@ class ModelExtensionModuleSendpulse extends Model
             FROM " . DB_PREFIX . "customer a 
             LEFT JOIN " . DB_PREFIX . "custom_field_value_description b on JSON_UNQUOTE(JSON_EXTRACT(custom_field, '$.$custom_field_sexo')) = custom_field_value_id");
 
+            
 
             $emails = array();
 
@@ -155,61 +190,59 @@ class ModelExtensionModuleSendpulse extends Model
      */
     public function exportNewCustomer($customer_id)
     {
-       
-        // $this->load->language('extension/module/sendpulse');
-        // $this->load->model('setting/setting');
+        $this->load->language('extension/module/sendpulse');
+        $this->load->model('setting/setting');
 
-        // $custom_field_celular    = $this->config->get('module_sendpulse_celular');
-        // $custom_field_sexo       = $this->config->get('module_sendpulse_sexo');
-        // $custom_field_nascimento = $this->config->get('module_sendpulse_nascimento');
+        $custom_field_celular    = '"'.$this->config->get('module_sendpulse_celular').'"';
+        $custom_field_sexo       = '"'.$this->config->get('module_sendpulse_sexo').'"';
+        $custom_field_nascimento = '"'.$this->config->get('module_sendpulse_nascimento').'"';
 
-        // $query = $this->db->query("SELECT a.email, a.firstname, a.lastname,b.name as sexo,
-        //     trim(replace(replace(replace(a.telephone, ')',''), '(', ''), '-', '')) as telefone, 
-        //     DATE_FORMAT(STR_TO_DATE(JSON_UNQUOTE(JSON_EXTRACT(custom_field, '$.$custom_field_nascimento')),'%d/%m/%Y'), '%Y-%m-%d') as nascimento,
-        //     trim(replace(replace(replace(JSON_UNQUOTE(JSON_EXTRACT(custom_field, '$.$custom_field_celular')), ')',''), '(', ''), '-', '')) as celular 
-        //     FROM " . DB_PREFIX . "customer a 
-        //     LEFT JOIN " . DB_PREFIX . "custom_field_value_description b on JSON_UNQUOTE(JSON_EXTRACT(custom_field, '$.$custom_field_sexo')) = custom_field_value_id 
-        //     where customer_id = '$customer_id'");
+        $query = $this->db->query("SELECT a.email, a.firstname, a.lastname,b.name as sexo,
+            trim(replace(replace(replace(a.telephone, ')',''), '(', ''), '-', '')) as telefone, 
+            DATE_FORMAT(STR_TO_DATE(JSON_UNQUOTE(JSON_EXTRACT(custom_field, '$.$custom_field_nascimento')),'%d/%m/%Y'), '%Y-%m-%d') as nascimento,
+            trim(replace(replace(replace(JSON_UNQUOTE(JSON_EXTRACT(custom_field, '$.$custom_field_celular')), ')',''), '(', ''), '-', '')) as celular 
+            FROM " . DB_PREFIX . "customer a 
+            LEFT JOIN " . DB_PREFIX . "custom_field_value_description b on JSON_UNQUOTE(JSON_EXTRACT(custom_field, '$.$custom_field_sexo')) = custom_field_value_id 
+            where customer_id = $customer_id");
 
-        // $data = $query->row;
-        
+        $data = $query->row;
 
-        // $emails = array();
-        //     $emails[] = array(
-        //         'email' => $data['email'],
-        //         'variables' => array(
-        //             'telefone'      => $data['telefone'],
-        //             'nome'          => $data['firstname'],
-        //             'sobreNome'     => $data['lastname'],
-        //             'nascimento'    => $data['nascimento'],
-        //             'celular'       => $data['celular'],
-        //             'sexo'          => $data['sexo']
+        $emails = array();
+            $emails[] = array(
+                'email' => $data['email'],
+                'variables' => array(
+                    'telefone'      => $data['telefone'],
+                    'nome'          => $data['firstname'],
+                    'sobreNome'     => $data['lastname'],
+                    'nascimento'    => $data['nascimento'],
+                    'celular'       => $data['celular'],
+                    'sexo'          => $data['sexo']
 
-        //             //'Phone' => $data['telephone'],
-        //             //$this->language->get('entry_firstname') => $data['firstname'].' '.$data['lastname'],
-        //             //'name' => $data['firstname'] . ' ' . $data['lastname']
-        //             //$this->language->get('entry_fax') => (isset($data['fax'])?$data['fax']:''),
-        //             //$this->language->get('entry_status') => 1
-        //         )
-        //     );
+                    //'Phone' => $data['telephone'],
+                    //$this->language->get('entry_firstname') => $data['firstname'].' '.$data['lastname'],
+                    //'name' => $data['firstname'] . ' ' . $data['lastname']
+                    //$this->language->get('entry_fax') => (isset($data['fax'])?$data['fax']:''),
+                    //$this->language->get('entry_status') => 1
+                )
+            );
 
-        //     try {
-        //         $api = new SendpulseApi($this->config->get('module_sendpulse_id'), $this->config->get('module_sendpulse_secret'), TOKEN_STORAGE);
-        //         $result = $api->addEmails($this->config->get('module_sendpulse_book_default'), $emails);
+            try {
+                $api = new SendpulseApi($this->config->get('module_sendpulse_id'), $this->config->get('module_sendpulse_secret'), TOKEN_STORAGE);
+                $result = $api->addEmails($this->config->get('module_sendpulse_book_default'), $emails);
 
-        //         if (isset($result->is_error) && $result->is_error) {
-        //             $msg = isset($result->message) ? $result->message : 'Something went wrong';
-        //             throw new Exception($msg);
-        //         }
-        //         $err = 1;
-        //         $this->db->query("UPDATE " . DB_PREFIX . "setting SET value =  value+ 1 WHERE `key` = 'module_sendpulse_count'");
+                if (isset($result->is_error) && $result->is_error) {
+                    $msg = isset($result->message) ? $result->message : 'Something went wrong';
+                    throw new Exception($msg);
+                }
+                $err = 1;
+                $this->db->query("UPDATE " . DB_PREFIX . "setting SET value =  value+ 1 WHERE `key` = 'module_sendpulse_count'");
 
-        //     } catch (Exception $e) {
-        //         $err = 0;
-        //     }
+            } catch (Exception $e) {
+                $err = 0;
+            }
 
 
-        // return $err;
+        return $err;
     }
 
     /**
