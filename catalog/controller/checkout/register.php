@@ -1,14 +1,6 @@
 <?php
 class ControllerCheckoutRegister extends Controller {
 	public function index() {
-		$data['validacao_remover_placeholder'] = $this->config->get('module_validacao_remover_placeholder');
-        $data['validacao_razao_social'] = $this->config->get('module_validacao_razao_social_id');
-        $data['validacao_cep_correios'] = $this->config->get('module_validacao_cep_correios');
-        $data['validacao_cep_primeiro'] = $this->config->get('module_validacao_cep_primeiro');
-        $data['validacao_cep_html'] = html_entity_decode($this->config->get('module_validacao_cep_html'));
-        $data['validacao_numero'] = $this->config->get('module_validacao_numero_id');
-        $data['validacao_complemento'] = $this->config->get('module_validacao_complemento_id');
-
 		$this->load->language('checkout/checkout');
 		
 		$data['entry_newsletter'] = sprintf($this->language->get('entry_newsletter'), $this->config->get('config_name'));
@@ -119,11 +111,6 @@ class ControllerCheckoutRegister extends Controller {
 		if (!$json) {
 			$this->load->model('account/customer');
 
-			require_once(DIR_SYSTEM . 'library/validacao/cliente.php');
-			if ((utf8_strlen(trim($this->request->post['address_2'])) < 1) || (utf8_strlen(trim($this->request->post['address_2'])) > 128)) {
-				$json['error']['address_2'] = $this->config->get('module_validacao_msg_bairro');
-			}
-
 			if ((utf8_strlen(trim($this->request->post['firstname'])) < 1) || (utf8_strlen(trim($this->request->post['firstname'])) > 32)) {
 				$json['error']['firstname'] = $this->language->get('error_firstname');
 			}
@@ -140,7 +127,7 @@ class ControllerCheckoutRegister extends Controller {
 				$json['error']['warning'] = $this->language->get('error_exists');
 			}
 
-			if (!preg_match('^\(+[0-9]{2}\) [0-9]{4,5}-[0-9]{4}$^', $this->request->post['telephone'])){
+			if ((utf8_strlen($this->request->post['telephone']) < 3) || (utf8_strlen($this->request->post['telephone']) > 32)) {
 				$json['error']['telephone'] = $this->language->get('error_telephone');
 			}
 
@@ -156,7 +143,7 @@ class ControllerCheckoutRegister extends Controller {
 
 			$country_info = $this->model_localisation_country->getCountry($this->request->post['country_id']);
 
-			if ($country_info && $country_info['postcode_required'] && (!preg_match('^[0-9]{5}-[0-9]{3}$^', $this->request->post['postcode']))) {
+			if ($country_info && $country_info['postcode_required'] && (utf8_strlen(trim($this->request->post['postcode'])) < 2 || utf8_strlen(trim($this->request->post['postcode'])) > 10)) {
 				$json['error']['postcode'] = $this->language->get('error_postcode');
 			}
 
@@ -199,43 +186,7 @@ class ControllerCheckoutRegister extends Controller {
 			$custom_fields = $this->model_account_custom_field->getCustomFields($customer_group_id);
 
 			foreach ($custom_fields as $custom_field) {
-				if ($custom_field['required'] && $custom_field['custom_field_id'] == $this->config->get('module_validacao_cnpj_id')) {
-					$cliente = new Cliente($this->request->post['custom_field'][$custom_field['location']][$custom_field['custom_field_id']]);
-					if ($cliente->validar_cnpj() == false) {
-						$json['error']['custom_field' . $custom_field['custom_field_id']] = $this->config->get('module_validacao_msg_cnpj');
-					}
-				} elseif ($custom_field['required'] && $custom_field['custom_field_id'] == $this->config->get('module_validacao_cpf_id')) {
-					$documento = $this->request->post['custom_field'][$custom_field['location']][$custom_field['custom_field_id']];
-					$cliente = new Cliente($documento);
-					if ($cliente->validar_cpf() == false) {
-						$json['error']['custom_field' . $custom_field['custom_field_id']] = $this->config->get('module_validacao_msg_cpf');
-					} else {
-						if ($this->config->get('module_validacao_cpf_existe')) {
-							$cpf_existe = $this->model_account_customer->getTotalCustomersByDocumento($documento);
-							if ($cpf_existe) {
-								$json['error']['custom_field' . $custom_field['custom_field_id']] = $this->config->get('module_validacao_msg_cpf_existe');
-							}
-						}
-					}
-				} elseif ($custom_field['required'] && $custom_field['custom_field_id'] == $this->config->get('module_validacao_nascimento_id')) {
-					$cliente = new Cliente($this->request->post['custom_field'][$custom_field['location']][$custom_field['custom_field_id']]);
-					if ($cliente->validar_data() == false) {
-						$json['error']['custom_field' . $custom_field['custom_field_id']] = $this->config->get('module_validacao_msg_nascimento');
-					} else {
-						if (($this->config->get('module_validacao_maior_18_anos')) && $cliente->validar_idade() == false) {
-							$json['error']['custom_field' . $custom_field['custom_field_id']] = $this->config->get('module_validacao_msg_maior_18_anos');
-						}
-					}
-				} elseif ($custom_field['required'] && $custom_field['custom_field_id'] == $this->config->get('module_validacao_numero_id')) {
-					$cliente = new Cliente($this->request->post['custom_field'][$custom_field['location']][$custom_field['custom_field_id']]);
-					if ($cliente->validar_numero() == false) {
-						$json['error']['custom_field' . $custom_field['custom_field_id']] = $this->config->get('module_validacao_msg_numero');
-					}
-				} elseif ($custom_field['required'] && $custom_field['custom_field_id'] == $this->config->get('module_validacao_celular_id')) {
-					if (!preg_match('^\(+[0-9]{2}\) [0-9]{4,5}-[0-9]{4}$^', $this->request->post['custom_field'][$custom_field['location']][$custom_field['custom_field_id']])) {
-						$json['error']['custom_field' . $custom_field['custom_field_id']] = $this->config->get('module_validacao_msg_celular');
-					}
-				} elseif ($custom_field['required'] && empty($this->request->post['custom_field'][$custom_field['location']][$custom_field['custom_field_id']])) {
+				if ($custom_field['required'] && empty($this->request->post['custom_field'][$custom_field['location']][$custom_field['custom_field_id']])) {
 					$json['error']['custom_field' . $custom_field['custom_field_id']] = sprintf($this->language->get('error_custom_field'), $custom_field['name']);
 				} elseif (($custom_field['type'] == 'text') && !empty($custom_field['validation']) && !filter_var($this->request->post['custom_field'][$custom_field['location']][$custom_field['custom_field_id']], FILTER_VALIDATE_REGEXP, array('options' => array('regexp' => $custom_field['validation'])))) {
 					$json['error']['custom_field' . $custom_field['custom_field_id']] = sprintf($this->language->get('error_custom_field'), $custom_field['name']);

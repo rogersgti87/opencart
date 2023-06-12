@@ -1,10 +1,6 @@
 <?php
 class ControllerCheckoutCheckout extends Controller {
 	public function index() {
-		$data['validacao_cnpj'] = $this->config->get('module_validacao_cnpj_id');
-        $data['validacao_cpf'] = $this->config->get('module_validacao_cpf_id');
-        $data['validacao_nascimento'] = $this->config->get('module_validacao_nascimento_id');
-		
 		// Validate cart has products and has stock.
 		if ((!$this->cart->hasProducts() && empty($this->session->data['vouchers'])) || (!$this->cart->hasStock() && !$this->config->get('config_stock_checkout'))) {
 			$this->response->redirect($this->url->link('checkout/cart'));

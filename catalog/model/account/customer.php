@@ -1,12 +1,6 @@
 <?php
 class ModelAccountCustomer extends Model {
 	
-	public function getTotalCustomersByDocumento($documento) {
-		$query = $this->db->query("SELECT COUNT(*) AS total FROM " . DB_PREFIX . "customer WHERE custom_field LIKE '%" . $this->db->escape($documento) . "%'");
-
-		return $query->row['total'];
-	}
-
 	public function addCustomer($data) {
 		if (isset($data['customer_group_id']) && is_array($this->config->get('config_customer_group_display')) && in_array($data['customer_group_id'], $this->config->get('config_customer_group_display'))) {
 			$customer_group_id = $data['customer_group_id'];

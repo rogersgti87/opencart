@@ -723,3 +723,589 @@ FILE: system/library/template/twig.php
 CODE: if (is_file($file)) {
 LINE: 13
 ----------------------------------------------------------------
+2023-06-12 9:59:48 - MOD: Modification Default
+
+FILE: system/engine/action.php
+REGEX: ~(require|include)(_once)?\(([^)]+)~
+LINE: 69
+
+FILE: system/engine/loader.php
+REGEX: ~(require|include)(_once)?\(([^)]+)~
+LINE: 77
+LINE: 151
+LINE: 168
+
+FILE: system/library/config.php
+REGEX: ~(require|include)(_once)?\(([^)]+)~
+LINE: 59
+
+FILE: system/library/language.php
+REGEX: ~(require|include)(_once)?\(([^)]+)~
+LINE: 67
+LINE: 73
+
+FILE: system/library/template/template.php
+REGEX: ~(require|include)(_once)?\(([^)]+)~
+LINE: 18
+
+FILE: system/library/template/twig.php
+CODE: if (is_file($file)) {
+LINE: 13
+----------------------------------------------------------------
+2023-06-12 10:02:13 - MOD: Modification Default
+
+FILE: system/engine/action.php
+REGEX: ~(require|include)(_once)?\(([^)]+)~
+LINE: 69
+
+FILE: system/engine/loader.php
+REGEX: ~(require|include)(_once)?\(([^)]+)~
+LINE: 77
+LINE: 151
+LINE: 168
+
+FILE: system/library/config.php
+REGEX: ~(require|include)(_once)?\(([^)]+)~
+LINE: 59
+
+FILE: system/library/language.php
+REGEX: ~(require|include)(_once)?\(([^)]+)~
+LINE: 67
+LINE: 73
+
+FILE: system/library/template/template.php
+REGEX: ~(require|include)(_once)?\(([^)]+)~
+LINE: 18
+
+FILE: system/library/template/twig.php
+CODE: if (is_file($file)) {
+LINE: 13
+----------------------------------------------------------------
+MOD: Validação no cadastro do cliente para OpenCart 3.0.x
+
+FILE: catalog/model/account/customer.php
+CODE: class ModelAccountCustomer extends Model {
+LINE: 8
+
+FILE: catalog/controller/affiliate/register.php
+CODE: public function index() {
+LINE: 8
+CODE: protected function validate() {
+LINE: 316
+CODE: if ((utf8_strlen($this->request->post['telephone']) < 3) || (utf8_strlen($this->request->post['telephone']) > 32)) {
+NOT FOUND - OPERATIONS ABORTED!
+
+FILE: catalog/controller/account/affiliate.php
+CODE: public function getForm() {
+LINE: 56
+CODE: protected function validate() {
+LINE: 262
+CODE: if ($custom_field['required'] && empty($this->request->post['custom_field'][$custom_field['location']][$custom_field['custom_field_id']])) {
+LINE: 318
+
+FILE: catalog/controller/account/register.php
+CODE: public function index() {
+LINE: 43
+CODE: public function index() {
+LINE: 47
+CODE: private function validate() {
+LINE: 266
+CODE: if ((utf8_strlen($this->request->post['telephone']) < 3) || (utf8_strlen($this->request->post['telephone']) > 32)) {
+NOT FOUND - OPERATIONS ABORTED!
+
+FILE: catalog/controller/account/edit.php
+CODE: public function index() {
+LINE: 8
+CODE: protected function validate() {
+LINE: 180
+CODE: if ((utf8_strlen($this->request->post['telephone']) < 3) || (utf8_strlen($this->request->post['telephone']) > 32)) {
+NOT FOUND - OPERATIONS ABORTED!
+
+FILE: catalog/controller/account/address.php
+CODE: protected function getForm() {
+LINE: 251
+CODE: if (isset($this->error['city'])) {
+LINE: 321
+CODE: protected function validateForm() {
+LINE: 501
+CODE: if ($country_info && $country_info['postcode_required'] && (utf8_strlen(trim($this->request->post['postcode'])) < 2 || utf8_strlen(trim($this->request->post['postcode'])) > 10)) {
+NOT FOUND - OPERATIONS ABORTED!
+
+FILE: catalog/controller/checkout/checkout.php
+CODE: public function index() {
+LINE: 7
+
+FILE: catalog/controller/checkout/register.php
+CODE: public function index() {
+LINE: 11
+CODE: $this->load->model('account/customer');
+LINE: 134
+CODE: if ((utf8_strlen($this->request->post['telephone']) < 3) || (utf8_strlen($this->request->post['telephone']) > 32)) {
+NOT FOUND - OPERATIONS ABORTED!
+
+FILE: catalog/controller/checkout/guest.php
+CODE: public function index() {
+LINE: 11
+CODE: if (!$json) {
+LINE: 185
+CODE: if ((utf8_strlen($this->request->post['telephone']) < 3) || (utf8_strlen($this->request->post['telephone']) > 32)) {
+NOT FOUND - OPERATIONS ABORTED!
+
+FILE: catalog/controller/checkout/shipping_address.php
+CODE: public function index() {
+LINE: 10
+CODE: $this->load->model('localisation/country');
+LINE: 158
+CODE: if ($country_info && $country_info['postcode_required'] && (utf8_strlen(trim($this->request->post['postcode'])) < 2 || utf8_strlen(trim($this->request->post['postcode'])) > 10)) {
+NOT FOUND - OPERATIONS ABORTED!
+
+FILE: catalog/controller/checkout/payment_address.php
+CODE: public function index() {
+LINE: 10
+CODE: $this->load->model('localisation/country');
+LINE: 146
+CODE: if ($country_info && $country_info['postcode_required'] && (utf8_strlen(trim($this->request->post['postcode'])) < 2 || utf8_strlen(trim($this->request->post['postcode'])) > 10)) {
+NOT FOUND - OPERATIONS ABORTED!
+
+FILE: catalog/controller/checkout/guest_shipping.php
+CODE: public function index() {
+LINE: 10
+CODE: $this->load->model('localisation/country');
+LINE: 146
+CODE: if ($country_info && $country_info['postcode_required'] && (utf8_strlen(trim($this->request->post['postcode'])) < 2 || utf8_strlen(trim($this->request->post['postcode'])) > 10)) {
+NOT FOUND - OPERATIONS ABORTED!
+
+FILE: catalog/view/theme/default/template/affiliate/register.twig
+CODE: {{ footer }}
+LINE: 807
+
+FILE: catalog/view/theme/default/template/account/affiliate.twig
+CODE: {{ footer }}
+LINE: 505
+
+FILE: catalog/view/theme/default/template/account/register.twig
+CODE: {{ footer }}
+LINE: 506
+
+FILE: catalog/view/theme/default/template/account/edit.twig
+CODE: {{ footer }}
+LINE: 400
+
+FILE: catalog/view/theme/default/template/account/address_form.twig
+CODE: {{ footer }}
+LINE: 624
+CODE: <input type="text" name="address_2" value="{{ address_2 }}" placeholder="{{ entry_address_2 }}" id="input-address-2" class="form-control" />
+LINE: 52
+
+FILE: catalog/view/theme/default/template/checkout/register.twig
+CODE: $('#collapse-payment-address select[name=\'country_id\']').trigger('change');
+LINE: 655
+
+FILE: catalog/view/theme/default/template/checkout/guest.twig
+CODE: $('#collapse-payment-address select[name=\'country_id\']').trigger('change');
+LINE: 624
+
+FILE: catalog/view/theme/default/template/checkout/payment_address.twig
+CODE: $('#collapse-payment-address select[name=\'country_id\']').trigger('change');
+LINE: 447
+
+FILE: catalog/view/theme/default/template/checkout/shipping_address.twig
+CODE: $('#collapse-shipping-address select[name=\'country_id\']').trigger('change');
+LINE: 446
+
+FILE: catalog/view/theme/default/template/checkout/guest_shipping.twig
+CODE: <form class="form-horizontal">
+LINE: 1
+CODE: </form>
+LINE: 202
+CODE: $('#collapse-shipping-address select[name=\'country_id\']').trigger('change');
+LINE: 434
+
+FILE: catalog/view/theme/default/template/checkout/checkout.twig
+CODE: <script type="text/javascript"><!--
+LINE: 106
+CODE: $(document).delegate('#button-register', 'click', function() {
+LINE: 237
+CODE: $('#collapse-payment-address').on('click', '#button-register', function() {
+NOT FOUND - OPERATION SKIPPED!
+----------------------------------------------------------------
+2023-06-12 10:06:20 - MOD: Modification Default
+
+FILE: system/engine/action.php
+REGEX: ~(require|include)(_once)?\(([^)]+)~
+LINE: 69
+
+FILE: system/engine/loader.php
+REGEX: ~(require|include)(_once)?\(([^)]+)~
+LINE: 77
+LINE: 151
+LINE: 168
+
+FILE: system/library/config.php
+REGEX: ~(require|include)(_once)?\(([^)]+)~
+LINE: 59
+
+FILE: system/library/language.php
+REGEX: ~(require|include)(_once)?\(([^)]+)~
+LINE: 67
+LINE: 73
+
+FILE: system/library/template/template.php
+REGEX: ~(require|include)(_once)?\(([^)]+)~
+LINE: 18
+
+FILE: system/library/template/twig.php
+CODE: if (is_file($file)) {
+LINE: 13
+----------------------------------------------------------------
+2023-06-12 10:07:21 - MOD: Modification Default
+
+FILE: system/engine/action.php
+REGEX: ~(require|include)(_once)?\(([^)]+)~
+LINE: 69
+
+FILE: system/engine/loader.php
+REGEX: ~(require|include)(_once)?\(([^)]+)~
+LINE: 77
+LINE: 151
+LINE: 168
+
+FILE: system/library/config.php
+REGEX: ~(require|include)(_once)?\(([^)]+)~
+LINE: 59
+
+FILE: system/library/language.php
+REGEX: ~(require|include)(_once)?\(([^)]+)~
+LINE: 67
+LINE: 73
+
+FILE: system/library/template/template.php
+REGEX: ~(require|include)(_once)?\(([^)]+)~
+LINE: 18
+
+FILE: system/library/template/twig.php
+CODE: if (is_file($file)) {
+LINE: 13
+----------------------------------------------------------------
+2023-06-12 10:07:26 - MOD: Modification Default
+
+FILE: system/engine/action.php
+REGEX: ~(require|include)(_once)?\(([^)]+)~
+LINE: 69
+
+FILE: system/engine/loader.php
+REGEX: ~(require|include)(_once)?\(([^)]+)~
+LINE: 77
+LINE: 151
+LINE: 168
+
+FILE: system/library/config.php
+REGEX: ~(require|include)(_once)?\(([^)]+)~
+LINE: 59
+
+FILE: system/library/language.php
+REGEX: ~(require|include)(_once)?\(([^)]+)~
+LINE: 67
+LINE: 73
+
+FILE: system/library/template/template.php
+REGEX: ~(require|include)(_once)?\(([^)]+)~
+LINE: 18
+
+FILE: system/library/template/twig.php
+CODE: if (is_file($file)) {
+LINE: 13
+----------------------------------------------------------------
+2023-06-12 10:08:07 - MOD: Modification Default
+
+FILE: system/engine/action.php
+REGEX: ~(require|include)(_once)?\(([^)]+)~
+LINE: 69
+
+FILE: system/engine/loader.php
+REGEX: ~(require|include)(_once)?\(([^)]+)~
+LINE: 77
+LINE: 151
+LINE: 168
+
+FILE: system/library/config.php
+REGEX: ~(require|include)(_once)?\(([^)]+)~
+LINE: 59
+
+FILE: system/library/language.php
+REGEX: ~(require|include)(_once)?\(([^)]+)~
+LINE: 67
+LINE: 73
+
+FILE: system/library/template/template.php
+REGEX: ~(require|include)(_once)?\(([^)]+)~
+LINE: 18
+
+FILE: system/library/template/twig.php
+CODE: if (is_file($file)) {
+LINE: 13
+----------------------------------------------------------------
+MOD: Validação no cadastro do cliente para OpenCart 3.0.x
+
+FILE: catalog/model/account/customer.php
+CODE: class ModelAccountCustomer extends Model {
+LINE: 8
+
+FILE: catalog/controller/affiliate/register.php
+CODE: public function index() {
+LINE: 8
+CODE: protected function validate() {
+LINE: 316
+CODE: if ((utf8_strlen($this->request->post['telephone']) < 3) || (utf8_strlen($this->request->post['telephone']) > 32)) {
+NOT FOUND - OPERATIONS ABORTED!
+
+FILE: catalog/controller/account/affiliate.php
+CODE: public function getForm() {
+LINE: 56
+CODE: protected function validate() {
+LINE: 262
+CODE: if ($custom_field['required'] && empty($this->request->post['custom_field'][$custom_field['location']][$custom_field['custom_field_id']])) {
+LINE: 318
+
+FILE: catalog/controller/account/register.php
+CODE: public function index() {
+LINE: 43
+CODE: public function index() {
+LINE: 47
+CODE: private function validate() {
+LINE: 266
+CODE: if ((utf8_strlen($this->request->post['telephone']) < 3) || (utf8_strlen($this->request->post['telephone']) > 32)) {
+NOT FOUND - OPERATIONS ABORTED!
+
+FILE: catalog/controller/account/edit.php
+CODE: public function index() {
+LINE: 8
+CODE: protected function validate() {
+LINE: 180
+CODE: if ((utf8_strlen($this->request->post['telephone']) < 3) || (utf8_strlen($this->request->post['telephone']) > 32)) {
+NOT FOUND - OPERATIONS ABORTED!
+
+FILE: catalog/controller/account/address.php
+CODE: protected function getForm() {
+LINE: 251
+CODE: if (isset($this->error['city'])) {
+LINE: 321
+CODE: protected function validateForm() {
+LINE: 501
+CODE: if ($country_info && $country_info['postcode_required'] && (utf8_strlen(trim($this->request->post['postcode'])) < 2 || utf8_strlen(trim($this->request->post['postcode'])) > 10)) {
+NOT FOUND - OPERATIONS ABORTED!
+
+FILE: catalog/controller/checkout/checkout.php
+CODE: public function index() {
+LINE: 7
+
+FILE: catalog/controller/checkout/register.php
+CODE: public function index() {
+LINE: 11
+CODE: $this->load->model('account/customer');
+LINE: 134
+CODE: if ((utf8_strlen($this->request->post['telephone']) < 3) || (utf8_strlen($this->request->post['telephone']) > 32)) {
+NOT FOUND - OPERATIONS ABORTED!
+
+FILE: catalog/controller/checkout/guest.php
+CODE: public function index() {
+LINE: 11
+CODE: if (!$json) {
+LINE: 185
+CODE: if ((utf8_strlen($this->request->post['telephone']) < 3) || (utf8_strlen($this->request->post['telephone']) > 32)) {
+NOT FOUND - OPERATIONS ABORTED!
+
+FILE: catalog/controller/checkout/shipping_address.php
+CODE: public function index() {
+LINE: 10
+CODE: $this->load->model('localisation/country');
+LINE: 158
+CODE: if ($country_info && $country_info['postcode_required'] && (utf8_strlen(trim($this->request->post['postcode'])) < 2 || utf8_strlen(trim($this->request->post['postcode'])) > 10)) {
+NOT FOUND - OPERATIONS ABORTED!
+
+FILE: catalog/controller/checkout/payment_address.php
+CODE: public function index() {
+LINE: 10
+CODE: $this->load->model('localisation/country');
+LINE: 146
+CODE: if ($country_info && $country_info['postcode_required'] && (utf8_strlen(trim($this->request->post['postcode'])) < 2 || utf8_strlen(trim($this->request->post['postcode'])) > 10)) {
+NOT FOUND - OPERATIONS ABORTED!
+
+FILE: catalog/controller/checkout/guest_shipping.php
+CODE: public function index() {
+LINE: 10
+CODE: $this->load->model('localisation/country');
+LINE: 146
+CODE: if ($country_info && $country_info['postcode_required'] && (utf8_strlen(trim($this->request->post['postcode'])) < 2 || utf8_strlen(trim($this->request->post['postcode'])) > 10)) {
+NOT FOUND - OPERATIONS ABORTED!
+
+FILE: catalog/view/theme/default/template/affiliate/register.twig
+CODE: {{ footer }}
+LINE: 807
+
+FILE: catalog/view/theme/default/template/account/affiliate.twig
+CODE: {{ footer }}
+LINE: 505
+
+FILE: catalog/view/theme/default/template/account/register.twig
+CODE: {{ footer }}
+LINE: 506
+
+FILE: catalog/view/theme/default/template/account/edit.twig
+CODE: {{ footer }}
+LINE: 400
+
+FILE: catalog/view/theme/default/template/account/address_form.twig
+CODE: {{ footer }}
+LINE: 624
+CODE: <input type="text" name="address_2" value="{{ address_2 }}" placeholder="{{ entry_address_2 }}" id="input-address-2" class="form-control" />
+LINE: 52
+
+FILE: catalog/view/theme/default/template/checkout/register.twig
+CODE: $('#collapse-payment-address select[name=\'country_id\']').trigger('change');
+LINE: 655
+
+FILE: catalog/view/theme/default/template/checkout/guest.twig
+CODE: $('#collapse-payment-address select[name=\'country_id\']').trigger('change');
+LINE: 624
+
+FILE: catalog/view/theme/default/template/checkout/payment_address.twig
+CODE: $('#collapse-payment-address select[name=\'country_id\']').trigger('change');
+LINE: 447
+
+FILE: catalog/view/theme/default/template/checkout/shipping_address.twig
+CODE: $('#collapse-shipping-address select[name=\'country_id\']').trigger('change');
+LINE: 446
+
+FILE: catalog/view/theme/default/template/checkout/guest_shipping.twig
+CODE: <form class="form-horizontal">
+LINE: 1
+CODE: </form>
+LINE: 202
+CODE: $('#collapse-shipping-address select[name=\'country_id\']').trigger('change');
+LINE: 434
+
+FILE: catalog/view/theme/default/template/checkout/checkout.twig
+CODE: <script type="text/javascript"><!--
+LINE: 106
+CODE: $(document).delegate('#button-register', 'click', function() {
+LINE: 237
+CODE: $('#collapse-payment-address').on('click', '#button-register', function() {
+NOT FOUND - OPERATION SKIPPED!
+----------------------------------------------------------------
+2023-06-12 10:26:46 - MOD: Modification Default
+
+FILE: system/engine/action.php
+REGEX: ~(require|include)(_once)?\(([^)]+)~
+LINE: 69
+
+FILE: system/engine/loader.php
+REGEX: ~(require|include)(_once)?\(([^)]+)~
+LINE: 77
+LINE: 151
+LINE: 168
+
+FILE: system/library/config.php
+REGEX: ~(require|include)(_once)?\(([^)]+)~
+LINE: 59
+
+FILE: system/library/language.php
+REGEX: ~(require|include)(_once)?\(([^)]+)~
+LINE: 67
+LINE: 73
+
+FILE: system/library/template/template.php
+REGEX: ~(require|include)(_once)?\(([^)]+)~
+LINE: 18
+
+FILE: system/library/template/twig.php
+CODE: if (is_file($file)) {
+LINE: 13
+----------------------------------------------------------------
+2023-06-12 10:26:48 - MOD: Modification Default
+
+FILE: system/engine/action.php
+REGEX: ~(require|include)(_once)?\(([^)]+)~
+LINE: 69
+
+FILE: system/engine/loader.php
+REGEX: ~(require|include)(_once)?\(([^)]+)~
+LINE: 77
+LINE: 151
+LINE: 168
+
+FILE: system/library/config.php
+REGEX: ~(require|include)(_once)?\(([^)]+)~
+LINE: 59
+
+FILE: system/library/language.php
+REGEX: ~(require|include)(_once)?\(([^)]+)~
+LINE: 67
+LINE: 73
+
+FILE: system/library/template/template.php
+REGEX: ~(require|include)(_once)?\(([^)]+)~
+LINE: 18
+
+FILE: system/library/template/twig.php
+CODE: if (is_file($file)) {
+LINE: 13
+----------------------------------------------------------------
+2023-06-12 10:59:46 - MOD: Modification Default
+
+FILE: system/engine/action.php
+REGEX: ~(require|include)(_once)?\(([^)]+)~
+LINE: 69
+
+FILE: system/engine/loader.php
+REGEX: ~(require|include)(_once)?\(([^)]+)~
+LINE: 77
+LINE: 151
+LINE: 168
+
+FILE: system/library/config.php
+REGEX: ~(require|include)(_once)?\(([^)]+)~
+LINE: 59
+
+FILE: system/library/language.php
+REGEX: ~(require|include)(_once)?\(([^)]+)~
+LINE: 67
+LINE: 73
+
+FILE: system/library/template/template.php
+REGEX: ~(require|include)(_once)?\(([^)]+)~
+LINE: 18
+
+FILE: system/library/template/twig.php
+CODE: if (is_file($file)) {
+LINE: 13
+----------------------------------------------------------------
+2023-06-12 11:40:10 - MOD: Modification Default
+
+FILE: system/engine/action.php
+REGEX: ~(require|include)(_once)?\(([^)]+)~
+LINE: 69
+
+FILE: system/engine/loader.php
+REGEX: ~(require|include)(_once)?\(([^)]+)~
+LINE: 77
+LINE: 151
+LINE: 168
+
+FILE: system/library/config.php
+REGEX: ~(require|include)(_once)?\(([^)]+)~
+LINE: 59
+
+FILE: system/library/language.php
+REGEX: ~(require|include)(_once)?\(([^)]+)~
+LINE: 67
+LINE: 73
+
+FILE: system/library/template/template.php
+REGEX: ~(require|include)(_once)?\(([^)]+)~
+LINE: 18
+
+FILE: system/library/template/twig.php
+CODE: if (is_file($file)) {
+LINE: 13
+----------------------------------------------------------------

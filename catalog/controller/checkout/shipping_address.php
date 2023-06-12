@@ -1,13 +1,6 @@
 <?php
 class ControllerCheckoutShippingAddress extends Controller {
 	public function index() {
-		$data['validacao_remover_placeholder'] = $this->config->get('module_validacao_remover_placeholder');
-        $data['validacao_cep_correios'] = $this->config->get('module_validacao_cep_correios');
-        $data['validacao_cep_primeiro'] = $this->config->get('module_validacao_cep_primeiro');
-        $data['validacao_cep_html'] = html_entity_decode($this->config->get('module_validacao_cep_html'));
-        $data['validacao_numero'] = $this->config->get('module_validacao_numero_id');
-        $data['validacao_complemento'] = $this->config->get('module_validacao_complemento_id');
-
 		$this->load->language('checkout/checkout');
 
 		if (isset($this->session->data['shipping_address']['address_id'])) {
@@ -37,12 +30,6 @@ class ControllerCheckoutShippingAddress extends Controller {
 		} else {
 			$data['zone_id'] = '';
 		}
-		
-
-		require_once(DIR_SYSTEM . 'library/validacao/cliente.php');
-        if ((utf8_strlen(trim($this->request->post['address_2'])) < 3) || (utf8_strlen(trim($this->request->post['address_2'])) > 128)) {
-            $json['error']['address_2'] = $this->config->get('module_validacao_msg_bairro');
-        }
 
 		$this->load->model('localisation/country');
 
@@ -146,7 +133,7 @@ class ControllerCheckoutShippingAddress extends Controller {
 
 				$country_info = $this->model_localisation_country->getCountry($this->request->post['country_id']);
 
-				if ($country_info && $country_info['postcode_required'] && (!preg_match('^[0-9]{5}-[0-9]{3}$^', $this->request->post['postcode']))) {
+				if ($country_info && $country_info['postcode_required'] && (utf8_strlen(trim($this->request->post['postcode'])) < 2 || utf8_strlen(trim($this->request->post['postcode'])) > 10)) {
 					$json['error']['postcode'] = $this->language->get('error_postcode');
 				}
 
@@ -165,12 +152,7 @@ class ControllerCheckoutShippingAddress extends Controller {
 
 				foreach ($custom_fields as $custom_field) {
 					if ($custom_field['location'] == 'address') {
-						if ($custom_field['required'] && $custom_field['custom_field_id'] == $this->config->get('module_validacao_numero_id')) {
-							$cliente = new Cliente($this->request->post['custom_field'][$custom_field['location']][$custom_field['custom_field_id']]);
-							if ($cliente->validar_numero() == false) {
-								$json['error']['custom_field' . $custom_field['custom_field_id']] = $this->config->get('module_validacao_msg_numero');
-							}
-						} elseif ($custom_field['required'] && empty($this->request->post['custom_field'][$custom_field['location']][$custom_field['custom_field_id']])) {
+						if ($custom_field['required'] && empty($this->request->post['custom_field'][$custom_field['location']][$custom_field['custom_field_id']])) {
 							$json['error']['custom_field' . $custom_field['custom_field_id']] = sprintf($this->language->get('error_custom_field'), $custom_field['name']);
 						} elseif (($custom_field['type'] == 'text') && !empty($custom_field['validation']) && !filter_var($this->request->post['custom_field'][$custom_field['location']][$custom_field['custom_field_id']], FILTER_VALIDATE_REGEXP, array('options' => array('regexp' => $custom_field['validation'])))) {
 							$json['error']['custom_field' . $custom_field['custom_field_id']] = sprintf($this->language->get('error_custom_field'), $custom_field['name']);
