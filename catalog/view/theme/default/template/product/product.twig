@@ -17,9 +17,9 @@
       <div class="row"> {% if column_left or column_right %}
         {% set class = 'col-sm-6' %}
         {% else %}
-        {% set class = 'col-sm-8' %}
+        {% set class = 'col-sm-7' %}
         {% endif %}
-        <div class="{{ class }}"> {% if thumb or images %}
+        <div class="{{ class }} product-left-layout"> {% if thumb or images %}
           <ul class="thumbnails">
             {% if thumb %}
             <li><a class="thumbnail" href="{{ popup }}" title="{{ heading_title }}"><img src="{{ thumb }}" title="{{ heading_title }}" alt="{{ heading_title }}" /></a></li>
@@ -113,15 +113,11 @@
         {% if column_left or column_right %}
         {% set class = 'col-sm-6' %}
         {% else %}
-        {% set class = 'col-sm-4' %}
+        {% set class = 'col-sm-5' %}
         {% endif %}
-        <div class="{{ class }}">
-          <div class="btn-group">
-            <button type="button" data-toggle="tooltip" class="btn btn-default" title="{{ button_wishlist }}" onclick="wishlist.add('{{ product_id }}');"><i class="fa fa-heart"></i></button>
-            <button type="button" data-toggle="tooltip" class="btn btn-default" title="{{ button_compare }}" onclick="compare.add('{{ product_id }}');"><i class="fa fa-exchange"></i></button>
-          </div>
-          <h1>{{ heading_title }}</h1>          
-          <ul class="list-unstyled">
+        <div class="{{ class }} product-right-layout">
+          <h1>{{ heading_title }} <button type="button" data-toggle="tooltip" class="btn btn-default" title="{{ button_wishlist }}" onclick="wishlist.add('{{ product_id }}');"><i class="fa fa-heart"></i></button></h1>
+          <ul id="details" class="list-unstyled">
             {% if manufacturer %}
             <li>{{ text_manufacturer }} <a href="{{ manufacturers }}">{{ manufacturer }}</a></li>
             {% endif %}
@@ -132,7 +128,7 @@
             <li>{{ text_stock }} {{ stock }}</li>
           </ul>          
           {% if price %}
-          <ul class="list-unstyled">
+          <ul id="price" class="list-unstyled">
             {% if not special %}
             <li>
               <h2>{{ price }}</h2>
@@ -275,8 +271,8 @@
             </div>
             {% endif %}
             <div class="form-group">
-              <label class="control-label" for="input-quantity">{{ entry_qty }}</label>
-              <input type="text" name="quantity" value="{{ minimum }}" size="2" id="input-quantity" class="form-control" />
+              <!--<label class="control-label" for="input-quantity">{{ entry_qty }}</label>-->
+              <input type="hidden" name="quantity" value="{{ minimum }}" size="2" min="1" id="input-quantity" class="form-control" />
               <input type="hidden" name="product_id" value="{{ product_id }}" />
               <br/>
               <button type="button" id="button-cart" data-loading-text="{{ text_loading }}" class="btn btn-primary btn-lg btn-block">{{ button_cart }}</button>
@@ -285,35 +281,38 @@
             <div class="alert alert-info"><i class="fa fa-info-circle"></i> {{ text_minimum }}</div>
             {% endif %}</div>
 
-<h4><strong><i style="font-size:16px;"class="fa fa-truck"> </i> {{text_title1}} </strong></h4>
+              <div class="box-shipping">
+              <h4>Consultar frete e prazo</h4>
+              <p class="text-gray">Informações de frete válidas apenas para este produto. Confira as condições definitivas na sacola.</p>
 
-			    <div class="form-group">
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="input-group">
-                            <input type="text" value="" maxlength="9" name="postcode" id="input-postcode" class="form-control" placeholder="Digite o seu CEP" />
-                            <span class="input-group-btn">
-                                <button type="button" id="simular" data-loading-text="{{ text_loading }}" class="button btn btn-primary">Calcular</button>
-                            </span>
+              <div class="form-group">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="input-group">
+                                <input type="text" value="" maxlength="9" name="postcode" id="input-postcode" class="form-control" placeholder="Digite o seu CEP" />
+                                <span class="input-group-btn">
+                                    <button type="button" id="simular" data-loading-text="{{ text_loading }}" class="button btn btn-primary">Calcular</button>
+                                </span>
+                            </div>
+                            <span><a href="http://www.buscacep.correios.com.br/sistemas/buscacep" target="_Blank" class="color-theme fs-7 ">Não sei o CEP</a></span>
                         </div>
+
+                        <div class="col-md-12 simulacao-frete" style="display:none;"></div>
                     </div>
 
-                    <div class="col-md-12 simulacao-frete" style="display:none;"></div>
                 </div>
-
-            </div>
-											 <div class="form-group required">
+								<div class="form-group required">
                   <div class="col-sm-12">
                     <label class="control-label" for="input-country">{{ entry_country }}</label>
                     <select name="country_id" id="input-country" class="form-control">
                       <option value="">{{ text_select }}</option>
-              {% for country in countries %}
-              {% if country.country_id == country_id %}
-              <option value="{{ country.country_id }}" selected="selected">{{ country.name }}</option>
-              {% else %}
-              <option value="{{ country.country_id }}">{{ country.name }}</option>
-              {% endif %}
-              {% endfor %}
+                      {% for country in countries %}
+                      {% if country.country_id == country_id %}
+                      <option value="{{ country.country_id }}" selected="selected">{{ country.name }}</option>
+                      {% else %}
+                      <option value="{{ country.country_id }}">{{ country.name }}</option>
+                      {% endif %}
+                      {% endfor %}
                     </select>
                   </div>
                 </div>
@@ -324,12 +323,17 @@
                     </select>
                   </div>
                 </div>
+                </div>
 
           {% if review_status %}
           <div class="rating">
             <p>{% for i in 1..5 %}
-              {% if rating < i %}<span class="fa fa-stack"><i class="fa fa-star-o fa-stack-1x"></i></span>{% else %}<span class="fa fa-stack"><i class="fa fa-star fa-stack-1x"></i><i class="fa fa-star-o fa-stack-1x"></i></span>{% endif %}
-              {% endfor %} <a href="" onclick="$('a[href=\'#tab-review\']').trigger('click'); return false;">{{ reviews }}</a> / <a href="" onclick="$('a[href=\'#tab-review\']').trigger('click'); return false;">{{ text_write }}</a></p>
+              {% if rating < i %}
+              <span class="fa fa-stack"><i class="far fa-star fa-stack-1x"></i></span>
+              {% else %}
+              <span class="fa fa-stack"><i class="fa fa-star fa-stack-1x"></i><i class="far fa-star fa-stack-1x"></i></span>
+              {% endif %}
+              {% endfor %} <a href="" onclick="$('a[href=\'#tab-review\']').trigger('click'); return false;">({{ reviews }})</a> <a href="" onclick="$('a[href=\'#tab-review\']').trigger('click'); return false;">{{ text_write }}</a></p>
             <hr>
             <!-- AddThis Button BEGIN -->
             <div class="addthis_toolbox addthis_default_style" data-url="{{ share }}"><a class="addthis_button_facebook_like" fb:like:layout="button_count"></a> <a class="addthis_button_tweet"></a> <a class="addthis_button_pinterest_pinit"></a> <a class="addthis_counter addthis_pill_style"></a></div>
