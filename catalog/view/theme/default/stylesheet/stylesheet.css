@@ -51,7 +51,7 @@ a {
 }
 
 a:hover {
-	color:#ff2f92;
+	color: #ff2f92;
 	text-decoration: none;
 }
 
@@ -142,9 +142,35 @@ a.color-theme:hover {
 	font-weight: bold;
 }
 
+.fs-7{
+	font-size:12px !important;
+}
+.fs-8{
+	font-size:11px !important;
+}
+.fs-9{
+	font-size:10px !important;
+}
+
 /* HEADER */
-header #header-menu .menu-dropdown:hover .dropdown-menu {
+header #header-menu .menu-dropdown:hover .dropdown-menu,
+header #header-menu .menu-dropdown:hover .dropdown-menu ul li {
 	display: block;
+}
+
+header #header-menu .menu-dropdown:hover .dropdown-menu ul {
+	margin-bottom: 0;
+}
+
+header #header-menu .menu-dropdown:hover .dropdown-menu ul li a {
+	padding: 5px;
+	display: block;
+	color: #555;
+}
+
+header #header-menu .menu-dropdown:hover .dropdown-menu ul li a:hover {
+	background: none;
+	color: #e45197;
 }
 
 
@@ -152,6 +178,31 @@ header #header-menu .menu-dropdown>a,
 header #header-menu a.dropdown-toggle {
 	color: #111;
 	transition: 0.25s all ease;
+}
+
+#cart > a {
+    font-size: 17px;
+    position: relative;
+}
+
+#cart > a > i {
+    font-size: 25px;
+}
+
+#cart > a #cart-total {
+    position: absolute;
+    top: -10px;
+    left: -10px;
+    text-align: center;
+    height: 20px;
+    width: 20px;
+    line-height: 19px;
+    font-size: 10px;
+    background: #e45197;
+    border: 1px solid rgb(0 0 0 / 15%);
+    color: #FFF;
+    border-radius: 100%;
+    font-weight: bold;
 }
 
 header #header-menu .menu-dropdown:hover>a,
@@ -163,7 +214,7 @@ header #header-menu a.dropdown-toggle:active {
 }
 
 header #header-menu #wishlist a>i {
-	font-size: 20px;
+	font-size: 25px;
 	color: #111;
 }
 
@@ -320,6 +371,29 @@ header #header-menu #wishlist a:hover>i.fa {
 	overflow-x: hidden;
 }
 
+#cart .dropdown-menu ul {
+    position: relative;
+}
+
+#cart .dropdown-menu li.cart-footer {
+    border-top: 1px solid #DDD;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    margin: 20px 0 0 0;
+    padding: 20px 0 0;
+}
+
+#cart .dropdown-menu li.cart-footer .row {
+    padding: 0;
+    margin: 10px 0;
+}
+
+#cart .dropdown-menu li.cart-footer a.btn {
+    padding: 10px 20px;
+    border-radius: 100px;
+}
+
 @media (max-width: 478px) {
 	#cart .dropdown-menu {
 		width: 100%;
@@ -328,17 +402,6 @@ header #header-menu #wishlist a:hover>i.fa {
 
 #cart .dropdown-menu table {
 	margin-bottom: 10px;
-}
-
-#cart .dropdown-menu li>div {
-	min-width: 427px;
-	padding: 0 10px;
-}
-
-@media (max-width: 478px) {
-	#cart .dropdown-menu li>div {
-		min-width: 100%;
-	}
 }
 
 #cart .dropdown-menu li p {
@@ -797,37 +860,40 @@ html[dir=rtl] .breadcrumb>li::after {
 .product-right-layout {
 	padding-left: 30px;
 }
-@media screen and (max-width:767px){
+
+@media screen and (max-width:767px) {
 	#logo img {
 		margin: 0 auto 30px;
 	}
-	.product-left-layout{
-		border-right:0;
-		padding-right:15px;
+
+	.product-left-layout {
+		border-right: 0;
+		padding-right: 15px;
 	}
+
 	.product-right-layout {
-		padding-left:15px;
+		padding-left: 15px;
 	}
 }
 
 
 .product-right-layout h1 {
-    display: flex;
-    align-items: center;
-    font-size: 25px;
-    font-weight: bold;
-    justify-content: space-between;
+	display: flex;
+	align-items: center;
+	font-size: 25px;
+	font-weight: bold;
+	justify-content: space-between;
 }
 
 .product-right-layout h1 button.btn.btn-default {
-    background: none;
-    border: 0;
-    box-shadow: none;
+	background: none;
+	border: 0;
+	box-shadow: none;
 }
 
 .product-right-layout h1 button.btn.btn-default i {
-    font-size: 20px;
-    color: #e45197;
+	font-size: 20px;
+	color: #e45197;
 }
 
 .product-thumb {

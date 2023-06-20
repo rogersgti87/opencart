@@ -34,7 +34,7 @@
 {% for script in scripts %}
 <script src="{{ script }}" type="text/javascript"></script>
 {% endfor %}
-<script src="catalog/view/javascript/common.js" type="text/javascript"></script>
+<script src="catalog/view/javascript/common.js?{{random()}}" type="text/javascript"></script>
 {% for link in links %}
 <link href="{{ link.href }}" rel="{{ link.rel }}" />
 {% endfor %}
@@ -90,9 +90,9 @@
               </div>
           </div>
           <div id="wishlist">
-          <a href="{{ wishlist }}"><i class="far fa-heart"></i><i class="fa fa-heart"></i></a>
+            <a href="{{ wishlist }}" data-toggle="tooltip" title="Lista de Desejos"><i class="far fa-heart"></i><i class="fa fa-heart"></i></a>
           </div>
-          <div id="cart" class="position-relative menu-dropdown">
+          <div id="cart" class="position-relative">
             {{ cart }}
           </div>
         </div>
