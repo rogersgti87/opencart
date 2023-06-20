@@ -1,5 +1,9 @@
-  <a href="{{ shopping_cart }}" data-loading-text="{{ text_loading }}"><i class="fas fa-shopping-bag"></i> Sacola <br> <span id="cart-total">{{ text_items }}</span></a>
-  <ul class="dropdown-menu dropdown-menu-right pull-right">
+  <a href="{{ shopping_cart }}" data-loading-text="{{ text_loading }}" class="dropdown-toggle" data-toggle="dropdown">
+    <i class="fas fa-shopping-bag"></i> Sacola  <i class="fa fa-caret-down fs-4"></i> <br> <span id="cart-total">{{ text_items_count }}</span>
+  </a>
+  <div class="dropdown-menu dropdown-menu-right pull-right">
+
+  <ul class="list-unstyled">
     {% if products or vouchers %}
     <li>
       <table class="table table-striped">
@@ -11,10 +15,12 @@
             - <small>{{ option.name }} {{ option.value }}</small> {% endfor %}
             {% endif %}
             {% if product.recurring %} <br />
-            - <small>{{ text_recurring }} {{ product.recurring }}</small> {% endif %}</td>
-          <td class="text-right">x {{ product.quantity }}</td>
-          <td class="text-right">{{ product.total }}</td>
-          <td class="text-center"><button type="button" onclick="cart.remove('{{ product.cart_id }}');" title="{{ button_remove }}" class="btn btn-danger btn-xs"><i class="fa fa-times"></i></button></td>
+            - <small>{{ text_recurring }} {{ product.recurring }}</small> {% endif %}
+
+            <br>
+            <span class="fs-7">{{ product.quantity }}x {{ product.total }}</span>            
+            </td>
+          <td class="text-center"><button type="button" onclick="cart.remove('{{ product.cart_id }}');" title="{{ button_remove }}" class="btn btn-theme fs-7"><i class="fa fa-times fs-7"></i></button></td>
         </tr>
         {% endfor %}
         {% for voucher in vouchers %}
@@ -28,8 +34,8 @@
         {% endfor %}
       </table>
     </li>
-    <li>
-      <div>
+    <li class="cart-footer">
+      <div class="table-responsive">
         <table class="table table-bordered">
           {% for total in totals %}
           <tr>
@@ -38,7 +44,11 @@
           </tr>
           {% endfor %}
         </table>
-        <p class="text-right"><a href="{{ cart }}"><strong><i class="fa fa-shopping-cart"></i> {{ text_cart }}</strong></a>&nbsp;&nbsp;&nbsp;<a href="{{ checkout }}"><strong><i class="fa fa-share"></i> {{ text_checkout }}</strong></a></p>
+      </div>
+
+      <div class="row justify-content-between">
+        <a href="{{ cart }}" class="btn btn-lg btn-theme"><i class="fa fa-shopping-cart"></i> {{ text_cart }}</a>
+        <a href="{{ checkout }}" class="btn btn-lg btn-theme"><i class="fa fa-share"></i> {{ text_checkout }}</a>
       </div>
     </li>
     {% else %}
@@ -46,4 +56,11 @@
       <p class="text-center">{{ text_empty }}</p>
     </li>
     {% endif %}
-  </ul>
+    </ul>
+  </div>
+
+<script>
+  var height_window = $(window).height() - 350;
+  var cartDropdown = $('#cart > div.dropdown-menu ul');
+  cartDropdown.css('height', height_window+'px');
+</script>

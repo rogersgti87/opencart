@@ -7,6 +7,7 @@ $_['text_success']             = 'Você adicionou <a href="%s">%s</a> ao seu <a 
 $_['text_remove']              = 'Você modificou seu carrinho de compras.';
 $_['text_login']               = 'Atenção: Você necessita <a href="%s">acessar</a> sua conta ou <a href="%s">cadastrar-se</a> para ver os preços.';
 $_['text_items']               = '%s - %s';
+$_['text_items_count']               = '%s';
 $_['text_points']              = 'Pontos: %s';
 $_['text_next']                = 'O que você deseja?';
 $_['text_next_choice']         = 'Clique na opção abaixo:';
