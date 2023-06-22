@@ -50,6 +50,7 @@ class ControllerExtensionModuleBestSeller extends Controller {
 				} else {
 					$parcelamento = $this->model_catalog_product->getParcelamento($result['price'], $result['tax_class_id']);
 				}
+				
 				$data['products'][] = array(
 					'parcelamento' => $parcelamento,
 					'product_id'  => $result['product_id'],

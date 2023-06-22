@@ -377,7 +377,7 @@ header #header-menu #wishlist a:hover>i.fa {
 
 #cart .dropdown-menu li.cart-footer {
     border-top: 1px solid #DDD;
-    position: absolute;
+    position: relative;
     bottom: 0;
     width: 100%;
     margin: 20px 0 0 0;
@@ -424,6 +424,23 @@ header #header-menu #wishlist a:hover>i.fa {
 #menu .nav>li {
 	display: inline-block;
 }
+
+
+#menu .nav>li.dropdown-fullwidth {
+    position: inherit;
+}
+
+#menu .nav>li.dropdown-fullwidth .dropdown-menu {
+    width: 80%;
+    text-align: center;
+    left: 10%;
+    margin-left: 0 !important;
+}
+
+#menu .nav>li.dropdown-fullwidth .dropdown-menu .dropdown-inner {
+    width: 100%;
+}
+
 
 #menu .nav>li>a {
 	color: #111;
@@ -528,7 +545,6 @@ header #header-menu #wishlist a:hover>i.fa {
 	#menu div.dropdown-menu {
 		margin-left: 0 !important;
 		padding-bottom: 10px;
-		background-color: rgba(0, 0, 0, 0.1);
 	}
 
 	#menu .dropdown-inner {
@@ -537,12 +553,12 @@ header #header-menu #wishlist a:hover>i.fa {
 
 	#menu .dropdown-inner a {
 		width: 100%;
-		color: #fff;
+		padding: 6px 20px;
 	}
 
 	#menu .dropdown-menu a:hover,
 	#menu .dropdown-menu ul li a:hover {
-		background: rgba(0, 0, 0, 0.1);
+		background: #e45197;
 	}
 
 	#menu .see-all {
@@ -900,6 +916,7 @@ html[dir=rtl] .breadcrumb>li::after {
 	border: 1px solid #ddd;
 	overflow: auto;
 	position: relative;
+	margin-bottom: 20px;
 }
 
 .product-thumb h4 a {
