@@ -578,29 +578,32 @@ header #header-menu #wishlist a:hover>i.fa {
 footer {
 	margin-top: 30px;
 	padding-top: 30px;
-	background-color: #303030;
+	background-color: #FFF;
 	border-top: 1px solid #ddd;
-	color: #e2e2e2;
+	color: #111;
 }
 
 footer hr {
 	border-top: none;
-	border-bottom: 1px solid #666;
+	border-bottom: 1px solid #DDD;
 }
 
 footer a {
-	color: #ccc;
+	color: #444;
+	font-size: 14px;
+	display: block;
+	padding: 4px 0;
 }
 
 footer a:hover {
-	color: #fff;
+	color: #ff2f92;
 }
 
 footer h5 {
-	font-family: 'Open Sans', sans-serif;
-	font-size: 13px;
+	font-family: 'Sora', sans-serif;
+	font-size: 18px;
 	font-weight: bold;
-	color: #fff;
+	color: #111;
 }
 
 /* alert */
