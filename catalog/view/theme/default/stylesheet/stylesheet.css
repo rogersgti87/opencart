@@ -205,6 +205,82 @@ header #header-menu a.dropdown-toggle {
     font-weight: bold;
 }
 
+/* cart */
+#cart>.btn {
+	font-size: 12px;
+	line-height: 18px;
+	color: #FFF;
+}
+
+#cart.open>.btn {
+	background-image: none;
+	background-color: #FFFFFF;
+	border: 1px solid #E6E6E6;
+	color: #666;
+	box-shadow: none;
+	text-shadow: none;
+}
+
+#cart.open>.btn:hover {
+	color: #444;
+}
+
+#cart .dropdown-menu {
+	background: #eee;
+	z-index: 1001;
+}
+
+#cart .dropdown-menu {
+	min-width: 100%;
+	overflow-y: auto;
+	max-height: 800px;
+	scrollbar-width: thin;
+	overflow-x: hidden;
+}
+
+#cart .dropdown-menu ul {
+    position: relative;
+}
+
+#cart .dropdown-menu li.cart-footer {
+    border-top: 1px solid #DDD;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+    margin: 20px 0 0 0;
+    padding: 20px 0 0;
+}
+
+#cart .dropdown-menu li.cart-footer .row {
+    padding: 0;
+    margin: 10px 0;
+}
+
+#cart .dropdown-menu li.cart-footer a.btn {
+    padding: 10px 20px;
+    border-radius: 100px;
+}
+
+@media (max-width: 650px) {
+	#cart > a > span {
+		/* display:none; */
+	}
+}
+
+@media (max-width: 478px) {
+	#cart .dropdown-menu {
+		width: 100%;
+	}
+}
+
+#cart .dropdown-menu table {
+	margin-bottom: 10px;
+}
+
+#cart .dropdown-menu li p {
+	margin: 20px 0;
+}
+
 header #header-menu .menu-dropdown:hover>a,
 header #header-menu .menu-dropdown>a:hover,
 header #header-menu .menu-dropdown>a:active,
@@ -338,76 +414,6 @@ header #header-menu #wishlist a:hover>i.fa {
 	font-size: 18px;
 }
 
-/* cart */
-#cart>.btn {
-	font-size: 12px;
-	line-height: 18px;
-	color: #FFF;
-}
-
-#cart.open>.btn {
-	background-image: none;
-	background-color: #FFFFFF;
-	border: 1px solid #E6E6E6;
-	color: #666;
-	box-shadow: none;
-	text-shadow: none;
-}
-
-#cart.open>.btn:hover {
-	color: #444;
-}
-
-#cart .dropdown-menu {
-	background: #eee;
-	z-index: 1001;
-}
-
-#cart .dropdown-menu {
-	min-width: 100%;
-	overflow-y: auto;
-	max-height: 800px;
-	scrollbar-width: thin;
-	overflow-x: hidden;
-}
-
-#cart .dropdown-menu ul {
-    position: relative;
-}
-
-#cart .dropdown-menu li.cart-footer {
-    border-top: 1px solid #DDD;
-    position: relative;
-    bottom: 0;
-    width: 100%;
-    margin: 20px 0 0 0;
-    padding: 20px 0 0;
-}
-
-#cart .dropdown-menu li.cart-footer .row {
-    padding: 0;
-    margin: 10px 0;
-}
-
-#cart .dropdown-menu li.cart-footer a.btn {
-    padding: 10px 20px;
-    border-radius: 100px;
-}
-
-@media (max-width: 478px) {
-	#cart .dropdown-menu {
-		width: 100%;
-	}
-}
-
-#cart .dropdown-menu table {
-	margin-bottom: 10px;
-}
-
-#cart .dropdown-menu li p {
-	margin: 20px 0;
-}
-
 /* menu */
 #menu {
 	background-color: #ffffff;
@@ -423,6 +429,27 @@ header #header-menu #wishlist a:hover>i.fa {
 
 #menu .nav>li {
 	display: inline-block;
+}
+@media screen and (max-width:767px){
+	#menu .nav>li{
+		display:block;
+	}
+}
+
+#menu .nav>li.allCategories > a {
+    font-weight: bold;
+}
+
+#menu .nav>li.allCategories {
+    background: #F2F2F2;
+}
+
+#menu .nav>li.allCategories.open {
+    background: #e45197;
+}
+
+#menu .nav>li.allCategories.open > a {
+    color: #FFF;
 }
 
 
@@ -458,8 +485,33 @@ header #header-menu #wishlist a:hover>i.fa {
 	padding-bottom: 0;
 }
 
+#menu .nav>li.allCategories .dropdown-menu {
+    background: #FFF;
+    border-radius: 0;
+    padding: 10px 5px;
+    min-width: 280px;
+}
+
+#menu .nav>li.allCategories .dropdown-menu li:hover {
+    background: #e45197;
+}
+
+#menu .nav>li.allCategories .dropdown-menu li:hover > a {
+    color: #FFF;
+}
+
+#menu .nav>li.allCategories .dropdown-menu li .dropdown-menu {
+    left: 100%;
+    top: 0;
+    background: #FFF;
+    border-color: #e45197;
+    border-left: 6px solid #e45197;
+    box-shadow: none !important;
+}
+
 #menu .dropdown-inner {
 	display: table;
+	width: 100%;
 }
 
 #menu .dropdown-inner ul {
@@ -468,12 +520,19 @@ header #header-menu #wishlist a:hover>i.fa {
 
 #menu .dropdown-inner a {
 	min-width: 160px;
+	width: 100%;
 	display: block;
-	padding: 3px 20px;
+	padding: 4px 20px;
 	clear: both;
 	line-height: 20px;
 	color: #333333;
-	font-size: 12px;
+	font-size: 13px;
+}
+
+#menu .nav>li.allCategories .dropdown-menu a i.fa {
+    position: absolute;
+    right: 7px;
+    top: 8px;
 }
 
 #menu .dropdown-inner li a:hover {
