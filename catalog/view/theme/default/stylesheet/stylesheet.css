@@ -452,6 +452,9 @@ header #header-menu #wishlist a:hover>i.fa {
     color: #FFF;
 }
 
+#menu .nav>li.allCategories:hover > .dropdown-menu {
+    display: block;
+}
 
 #menu .nav>li.dropdown-fullwidth {
     position: inherit;
