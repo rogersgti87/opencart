@@ -321,8 +321,8 @@ header #header-menu #wishlist a:hover>i.fa {
 
 /* top */
 #top {
-	background-color: #EEEEEE;
-	border-bottom: 1px solid #e2e2e2;
+	background-color: #e45197;
+	border-bottom: 1px solid #0000004f;
 	padding: 4px 0px 3px 0;
 	margin: 0 0 20px 0;
 	min-height: 40px;
@@ -347,8 +347,7 @@ header #header-menu #wishlist a:hover>i.fa {
 #top .btn-link,
 #top-links li,
 #top-links a {
-	color: #888;
-	text-shadow: 0 1px 0 #FFF;
+	color: #FFF;
 	text-decoration: none;
 }
 
