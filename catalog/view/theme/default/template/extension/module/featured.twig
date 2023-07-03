@@ -1,6 +1,5 @@
 <h3>{{ heading_title }}</h3>
 
-
 <div class="swiper-viewport oc_module_product oc_featured">
   <div id="carousel_featured{{ module }}" class="swiper-container">
     <div class="swiper-wrapper">
@@ -64,14 +63,17 @@
   $('#carousel_featured{{ module }}').swiper({
     mode: 'horizontal',
     slidesPerView: 4,
+    //slidesPerView: "auto",
     //pagination: '.oc_featured{{ module }}',
     paginationClickable: true,
     nextButton: '.oc_featured .swiper-button-next',
     prevButton: '.oc_featured .swiper-button-prev',
-      spaceBetween: 30,
+    spaceBetween: 30,
     autoplay: 2500,
-      autoplayDisableOnInteraction: true,
+    autoplayDisableOnInteraction: true,
     loop: true,
+    centeredSlides: true,
+    freeMode: true,
     breakpoints: {
       320: {
         slidesPerView: 1,
