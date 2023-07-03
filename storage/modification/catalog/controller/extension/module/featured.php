@@ -10,6 +10,10 @@ class ControllerExtensionModuleFeatured extends Controller {
           $this->document->addStyle('catalog/view/theme/default/stylesheet/action_label.css');
         
 
+		$this->document->addStyle('catalog/view/javascript/jquery/swiper/css/swiper.min.css');
+		$this->document->addStyle('catalog/view/javascript/jquery/swiper/css/opencart.css');
+		$this->document->addScript('catalog/view/javascript/jquery/swiper/js/swiper.jquery.min.js');
+
 		$data['products'] = array();
 
 		if (!$setting['limit']) {
@@ -60,6 +64,7 @@ class ControllerExtensionModuleFeatured extends Controller {
 					} else {
 						$parcelamento = $this->model_catalog_product->getParcelamento($product_info['price'], $product_info['tax_class_id']);
 					}
+					
 					
           if ($special) {
             $action_percent = 100-round($product_info['special']/$product_info['price']*100, 0);

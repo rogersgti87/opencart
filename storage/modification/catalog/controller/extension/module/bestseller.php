@@ -54,6 +54,7 @@ class ControllerExtensionModuleBestSeller extends Controller {
 					$parcelamento = $this->model_catalog_product->getParcelamento($result['price'], $result['tax_class_id']);
 				}
 				
+				
           if ($special) {
             $action_percent = 100-round($result['special']/$result['price']*100, 0);
           } else {

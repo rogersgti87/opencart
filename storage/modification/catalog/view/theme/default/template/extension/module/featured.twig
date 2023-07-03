@@ -1,7 +1,13 @@
 <h3>{{ heading_title }}</h3>
-<div class="row">
+
+
+<div class="swiper-viewport oc_featured">
+  <div id="carousel_featured{{ module }}" class="swiper-container">
+    <div class="swiper-wrapper">
+
  {% for product in products %}
-  <div class="product-layout col-lg-3 col-md-3 col-sm-6 col-xs-12">
+ <div class="swiper-slide text-center">
+  <div class="product-layout">
     <div class="product-thumb transition">
 
           {% if  product.action_percent > 0 %}
@@ -41,10 +47,57 @@
         <p class="text-gray fs-6">{{ product.description }}</p>
       </div>
       <div class="product-buttons">
-        <button type="button" class="btn btn-block btn-theme" onclick="cart.add('{{ product.product_id }}');"><i class="fa fa-shopping-cart"></i> <span class="hidden-xs hidden-sm hidden-md">{{ button_cart }}</span></button>
-        <span><a href="{{ product.href }}">Ver mais</a></span>
+        <button type="button" class="btn btn-block btn-theme" onclick="cart.add('{{ product.product_id }}');"><i class="fa fa-shopping-cart"></i> <span class="">{{ button_cart }}</span></button>
+        
       </div>
     </div>
   </div>
+  </div>
   {% endfor %}
+
+  
 </div>
+</div>
+
+<div class="swiper-pager">
+  <div class="swiper-button-next"></div>
+  <div class="swiper-button-prev"></div>
+</div>
+</div>
+
+<script type="text/javascript"><!--
+  $('#carousel_featured{{ module }}').swiper({
+    mode: 'horizontal',
+    slidesPerView: 4,
+    //pagination: '.oc_featured{{ module }}',
+    paginationClickable: true,
+    nextButton: '.oc_featured .swiper-button-next',
+    prevButton: '.oc_featured .swiper-button-prev',
+      spaceBetween: 30,
+    autoplay: 2500,
+      autoplayDisableOnInteraction: true,
+    loop: true,
+    breakpoints: {
+      320: {
+        slidesPerView: 1,
+        spaceBetween: 20
+      },      
+      480: {
+        slidesPerView: 1,
+        spaceBetween: 30
+      },
+      640: {
+        slidesPerView: 2,
+        spaceBetween: 5,
+      },
+      768: {
+        slidesPerView: 3,
+        spaceBetween: 5,
+      },
+      1024: {
+        slidesPerView: 3,
+        spaceBetween: 5,
+      },
+    }
+  });
+  //--></script>
