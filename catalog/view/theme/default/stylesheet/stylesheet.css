@@ -1458,6 +1458,17 @@ html[dir=rtl] #cart .dropdown-menu {
 
 }
 
+.swiper-viewport:hover .swiper-button-next{
+    opacity: 0.7;
+    right: 10px;
+}
+.swiper-button-prev i, .swiper-button-next i {
+	font-size:30px;
+}
+.swiper-button-prev::before, .swiper-button-next::before {
+    display: none;
+}
+
 .swiper-viewport.oc_module_product {
     box-shadow: none !important;
 }
