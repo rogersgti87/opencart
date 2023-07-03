@@ -1,7 +1,12 @@
 <h3>{{ heading_title }}</h3>
-<div class="row">
+
+<div class="swiper-viewport oc_module_product oc_featured">
+  <div id="carousel_latest{{ module }}" class="swiper-container">
+    <div class="swiper-wrapper">
+
  {% for product in products %}
-  <div class="product-layout col-lg-3 col-md-3 col-sm-6 col-xs-12">
+ <div class="swiper-slide text-center">
+  <div class="product-layout">
     <div class="product-thumb transition">
       <div class="image">
       <a href="{{ product.href }}"><img src="{{ product.thumb }}" alt="{{ product.name }}" title="{{ product.name }}" class="img-responsive" /></a>
@@ -41,5 +46,55 @@
       </div>
     </div>
   </div>
+  </div>
   {% endfor %}
+
+  
 </div>
+</div>
+
+<div class="swiper-pager">
+    <div class="swiper-button-next"><i class="fas fa-arrow-circle-right"></i></div>
+    <div class="swiper-button-prev"><i class="fas fa-arrow-circle-left"></i></div>
+</div>
+</div>
+
+<script type="text/javascript"><!--
+  $('#carousel_latest{{ module }}').swiper({
+    mode: 'horizontal',
+    slidesPerView: 4,
+    //slidesPerView: "auto",
+    //pagination: '.oc_featured{{ module }}',
+    paginationClickable: true,
+    nextButton: '.oc_featured .swiper-button-next',
+    prevButton: '.oc_featured .swiper-button-prev',
+    spaceBetween: 30,
+    autoplay: 2500,
+    autoplayDisableOnInteraction: true,
+    loop: true,
+    centeredSlides: true,
+    freeMode: true,
+    breakpoints: {
+      320: {
+        slidesPerView: 1,
+        spaceBetween: 20
+      },      
+      480: {
+        slidesPerView: 1,
+        spaceBetween: 30
+      },
+      640: {
+        slidesPerView: 2,
+        spaceBetween: 5,
+      },
+      768: {
+        slidesPerView: 3,
+        spaceBetween: 5,
+      },
+      1024: {
+        slidesPerView: 3,
+        spaceBetween: 5,
+      },
+    }
+  });
+  //--></script>
