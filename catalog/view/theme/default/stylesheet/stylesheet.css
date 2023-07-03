@@ -1457,3 +1457,7 @@ html[dir=rtl] #cart .dropdown-menu {
 	}
 
 }
+
+.swiper-viewport.oc_module_product {
+    box-shadow: none !important;
+}
