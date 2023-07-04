@@ -12,7 +12,7 @@
         <div class="dropdown-menu">
           <div class="dropdown-inner">
             <ul class="list-unstyled">
-            {% for category in categories %}
+            {% for category in categories_full %}
             {% if category.children %}
             
             {% if category.column > 2 %}
@@ -45,7 +45,7 @@
 
         {% for category in categories %}
         {% if category.children %}
-        
+                
         {% if category.column > 2 %}
         <li class="dropdown dropdown-fullwidth">
         {% else %}          
