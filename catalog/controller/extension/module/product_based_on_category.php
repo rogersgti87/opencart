@@ -1,6 +1,7 @@
 <?php
 class ControllerExtensionModuleProductBasedOnCategory extends Controller {
 	public function index($setting) {
+		static $module = 0;		
 		$this->load->language('extension/module/product_based_on_category');
 
 		$this->load->model('catalog/product');
@@ -72,6 +73,7 @@ class ControllerExtensionModuleProductBasedOnCategory extends Controller {
 
 		if ($data['products']) {
 
+			$data['module'] = $module++;
 			return $this->load->view('extension/module/product_based_on_category', $data);
 		}
 	}

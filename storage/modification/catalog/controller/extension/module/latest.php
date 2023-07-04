@@ -10,6 +10,10 @@ class ControllerExtensionModuleLatest extends Controller {
           $this->document->addStyle('catalog/view/theme/default/stylesheet/action_label.css');
         
 
+		$this->document->addStyle('catalog/view/javascript/jquery/swiper/css/swiper.min.css');
+		$this->document->addStyle('catalog/view/javascript/jquery/swiper/css/opencart.css');
+		$this->document->addScript('catalog/view/javascript/jquery/swiper/js/swiper.jquery.min.js');
+
 		$data['products'] = array();
 
 		$results = $this->model_catalog_product->getLatestProducts($setting['limit']);
