@@ -14907,3 +14907,129 @@ FILE: catalog/view/theme/default/template/product/product.twig
 CODE: {% if thumb or images %}
 LINE: 26
 ----------------------------------------------------------------
+2023-07-04 16:12:39 - MOD: Modification Default
+
+FILE: system/engine/action.php
+REGEX: ~(require|include)(_once)?\(([^)]+)~
+LINE: 69
+
+FILE: system/engine/loader.php
+REGEX: ~(require|include)(_once)?\(([^)]+)~
+LINE: 77
+LINE: 151
+LINE: 168
+
+FILE: system/library/config.php
+REGEX: ~(require|include)(_once)?\(([^)]+)~
+LINE: 59
+
+FILE: system/library/language.php
+REGEX: ~(require|include)(_once)?\(([^)]+)~
+LINE: 67
+LINE: 73
+
+FILE: system/library/template/template.php
+REGEX: ~(require|include)(_once)?\(([^)]+)~
+LINE: 18
+
+FILE: system/library/template/twig.php
+CODE: if (is_file($file)) {
+LINE: 13
+----------------------------------------------------------------
+MOD: Стикер акции на изображении товара
+
+FILE: catalog/controller/product/category.php
+CODE: $this->load->model('tool/image');
+LINE: 12
+CODE: $data['products'][] = array(
+LINE: 205
+
+FILE: catalog/controller/product/search.php
+CODE: $this->load->model('tool/image');
+LINE: 12
+CODE: $data['products'][] = array(
+LINE: 231
+
+FILE: catalog/controller/product/manufacturer.php
+CODE: $this->load->model('tool/image');
+LINE: 64
+CODE: $data['products'][] = array(
+LINE: 194
+
+FILE: catalog/controller/product/special.php
+CODE: $this->load->model('tool/image');
+LINE: 10
+CODE: $data['products'][] = array(
+LINE: 123
+
+FILE: catalog/view/theme/default/template/product/category.twig
+CODE: <div class="image">
+LINE: 99
+
+FILE: catalog/view/theme/default/template/product/search.twig
+CODE: <div class="image">
+LINE: 120
+
+FILE: catalog/view/theme/default/template/product/manufacturer_info.twig
+CODE: <div class="image">
+LINE: 65
+
+FILE: catalog/view/theme/default/template/product/manufacturer_list.twig
+CODE: <div class="image">
+NOT FOUND - OPERATIONS ABORTED!
+
+FILE: catalog/view/theme/default/template/product/special.twig
+CODE: <div class="image">
+LINE: 65
+
+FILE: catalog/controller/extension/module/bestseller.php
+CODE: $this->load->model('tool/image');
+LINE: 10
+CODE: $data['products'][] = array(
+LINE: 56
+
+FILE: catalog/controller/extension/module/latest.php
+CODE: $this->load->model('tool/image');
+LINE: 10
+CODE: $data['products'][] = array(
+LINE: 60
+
+FILE: catalog/controller/extension/module/special.php
+CODE: $this->load->model('tool/image');
+LINE: 10
+CODE: $data['products'][] = array(
+LINE: 62
+
+FILE: catalog/controller/extension/module/featured.php
+CODE: $this->load->model('tool/image');
+LINE: 10
+CODE: $data['products'][] = array(
+LINE: 67
+
+FILE: catalog/view/theme/default/template/extension/module/bestseller.twig
+CODE: <div class="image">
+LINE: 10
+
+FILE: catalog/view/theme/default/template/extension/module/latest.twig
+CODE: <div class="image">
+LINE: 15
+
+FILE: catalog/view/theme/default/template/extension/module/special.twig
+CODE: <div class="image">
+LINE: 10
+
+FILE: catalog/view/theme/default/template/extension/module/featured.twig
+CODE: <div class="image">
+LINE: 15
+
+FILE: catalog/controller/product/product.php
+CODE: public function index() {
+LINE: 7
+CODE: if ($this->config->get('config_tax'))
+LINE: 377
+LINE: 495
+
+FILE: catalog/view/theme/default/template/product/product.twig
+CODE: {% if thumb or images %}
+LINE: 26
+----------------------------------------------------------------

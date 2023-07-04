@@ -15,7 +15,7 @@
             {% for category in categories_full %}
             {% if category.children %}
             
-            {% if category.column > 2 %}
+            {% if category.children|length > 10 %}
             <li class="dropdown dropdown-fullwidth">
             {% else %}          
             <li class="dropdown">
@@ -23,7 +23,17 @@
 
             <a href="{{ category.href }}" class="dropdown-toggle" data-toggle="dropdown">{{ category.name }} <i class="fa fa-angle-right"></i></a>
               <div class="dropdown-menu">
-                <div class="dropdown-inner"> {% for children in category.children|batch(category.children|length / category.column|round(1, 'ceil')) %}
+                <div class="dropdown-inner"> 
+                  
+                  {% if category.children|length <= 10 %}
+                  {% set colunas = 1 %}
+                {% elseif category.children|length <= 20 %}
+                  {% set colunas = 2 %}
+                {% elseif category.children|length > 20 %}
+                  {% set colunas = 3 %}
+                {% endif %}
+
+                  {% for children in category.children|batch(category.children|length / colunas|round(1, 'ceil')) %}
                   <ul class="list-unstyled">
                     {% for child in children %}
                     <li><a href="{{ child.href }}">{{ child.name }}</a></li>
@@ -46,15 +56,24 @@
         {% for category in categories %}
         {% if category.children %}
                 
-        {% if category.column > 2 %}
+        {% if category.children|length > 10 %}
         <li class="dropdown dropdown-fullwidth">
         {% else %}          
         <li class="dropdown">
         {% endif %}
 
-        <a href="{{ category.href }}" class="dropdown-toggle" data-toggle="dropdown">{{ category.name }} <i class="fa fa-angle-right"></i></a>
+        <a href="{{ category.href }}" class="dropdown-toggle" data-toggle="dropdown">{{ category.name }} {{ category.children|length }}<i class="fa fa-angle-right"></i></a>
           <div class="dropdown-menu">
-            <div class="dropdown-inner"> {% for children in category.children|batch(category.children|length / category.column|round(1, 'ceil')) %}
+            <div class="dropdown-inner"> 
+              {% if category.children|length <= 10 %}
+                {% set colunas = 1 %}
+              {% elseif category.children|length <= 20 %}
+                {% set colunas = 2 %}
+              {% elseif category.children|length > 20 %}
+                {% set colunas = 3 %}
+              {% endif %}
+
+              {% for children in category.children|batch(category.children|length / colunas|round(1, 'ceil')) %}
               <ul class="list-unstyled">
                 {% for child in children %}
                 <li><a href="{{ child.href }}">{{ child.name }}</a></li>

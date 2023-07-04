@@ -13,6 +13,7 @@ system/storage/
 
 storage/cache/*
 storage/logs/*
+storage/logs/error.log
 
 # vQmod log files
 vqmod/logs/*
@@ -20,3 +21,4 @@ vqmod/logs/*
 vqmod/vqcache/*
 vqmod/checked.cache
 vqmod/mods.cache
+*.log
