@@ -62,7 +62,7 @@
         <li class="dropdown">
         {% endif %}
 
-        <a href="{{ category.href }}" class="dropdown-toggle" data-toggle="dropdown">{{ category.name }} {{ category.children|length }}<i class="fa fa-angle-right"></i></a>
+        <a href="{{ category.href }}" class="dropdown-toggle" data-toggle="dropdown">{{ category.name }}<i class="fa fa-angle-right"></i></a>
           <div class="dropdown-menu">
             <div class="dropdown-inner"> 
               {% if category.children|length <= 10 %}
