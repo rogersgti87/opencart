@@ -1,3 +1,60 @@
+<style>
+
+	.btn-whatsapp a {
+
+		color:#fff; 
+		text-decoration:none; 
+		display:block; 
+	}
+	
+	.btn-whatsapp {
+		
+		position:fixed; 
+		right:75px; 
+		bottom:30px; 
+		transform: translate(-50%, -50%);  
+		background-color:rgb(37, 211, 102); 
+		width:60px; height:60px; 
+		text-align:center; 
+		line-height:58px; 
+		font-size:1.8em; 
+		color:#ffffff; 
+		font-weight:100; 
+		border-radius:50%; 
+	}
+	
+	.btn-whatsapp:before,
+	.btn-whatsapp:after
+	
+	{
+	
+		content: '';
+		display:block;
+		position: absolute;
+		border-radius:50%;
+		border:1px solid #25d366;
+		left: -20px;
+		right: -20px;
+		bottom: -20px;
+		top: -20px;
+		animation: animate 1.5s linear infinite;
+		opacity:0;
+		backface-visibility:hidden;    
+	}
+	
+	.pulsaDelay:after { animation-delay: .5s; }
+	
+	@keyframes animate {
+	
+	
+	   0%   { transform: scale(0.5); opacity:0; }
+	   50%  { opacity:1; }
+	   100% { transform: scale(1.2); opacity:0; }
+	
+	}
+
+</style>
+
 <footer>
 	<div class="container">
 		<div class="row row-flex">
@@ -79,6 +136,15 @@
 		<hr>
 		<p>{{ powered }}</p>
 	</div>
+
+
+	<!--Botão whatsapp-->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+<a href="https://wa.me/5522992196369?text=" target="_blank">
+    <div class="btn-whatsapp pulsaDelay"><i class="fa fa-whatsapp"></i></div>
+</a>
+<!--Botão whatsapp-->
+
 </footer>
 {% for style in styles %}
 	<link href="{{ style.href }}" type="text/css" rel="{{ style.rel }}" media="{{ style.media }}"/>
