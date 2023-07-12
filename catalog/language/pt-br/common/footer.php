@@ -14,4 +14,4 @@ $_['text_account']      = 'Minha conta';
 $_['text_order']        = 'Histórico de pedidos';
 $_['text_wishlist']     = 'Lista de desejos';
 $_['text_newsletter']   = 'Informativo';
-$_['text_powered']      = 'Desenvolvido <span class="fa fa-heart"></span> por <a href="https://rogerti.com.br">ROGER.TI</a>';
+$_['text_powered']      = 'Desenvolvido <span class="fa fa-heart"></span> por <a href="https://rogerti.com.br" target="_blank">ROGER.TI</a>';
