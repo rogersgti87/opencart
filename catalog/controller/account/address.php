@@ -130,6 +130,17 @@ class ControllerAccountAddress extends Controller {
 		$this->getList();
 	}
 
+	public function estado_autocompletar() {
+		$this->load->model('localisation/zone');
+		$code = $this->model_localisation_zone->getZonesByEstado($this->request->get['estado']);
+		if ($code != '') {
+			$output = $code;
+		}else{
+			$output = '';
+		}
+		$this->response->setOutput($output);
+	}
+
 	protected function getList() {
 		$data['breadcrumbs'][] = array(
 			'text' => $this->language->get('text_home'),
